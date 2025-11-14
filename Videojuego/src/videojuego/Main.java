@@ -13,7 +13,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
 
-        audio.play("Videojuego/src/videojuego/audio/Batman.wav");
+        audio.play("src/videojuego/audio/Batman.wav");
 
         
        
@@ -35,6 +35,22 @@ public class Main {
 
         System.out.println("Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
         "\n");
+
+        System.out.println("_____________________                              _____________________\r\n" + //
+                        "`-._:  .:'   `:::  .:\\           |\\__/|           /::  .:'   `:::  .:.-'\r\n" + //
+                        "    \\      :          \\          |:   |          /         :       /    \r\n" + //
+                        "     \\     ::    .     `-_______/ ::   \\_______-'   .      ::   . /      \r\n" + //
+                        "      |  :   :: ::'  :   :: ::'  :   :: ::'      :: ::'  :   :: :|       \r\n" + //
+                        "      |     ;::         ;::         ;::         ;::         ;::  |       \r\n" + //
+                        "      |  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:|       \r\n" + //
+                        "      /     :           :           :           :           :    \\       \r\n" + //
+                        "     /______::_____     ::    .     ::    .     ::   _____._::____\\      \r\n" + //
+                        "                   `----._:: ::'  :   :: ::'  _.----'                    \r\n" + //
+                        "                          `--.       ;::  .--'                           \r\n" + //
+                        "                              `-. .:'  .-'                               \r\n" + //
+                        "                                 \\    /                            \r\n" + //
+                        "                                  \\  /                                   \r\n" + //
+                        "                                   \\/ ");
         
         Jugador jugador1 = new Jugador(nombreJugador, 0, 0, 0);
         

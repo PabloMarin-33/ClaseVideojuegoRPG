@@ -5,11 +5,18 @@ import java.util.Scanner;
 public class Main {
    
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
-        
+
         // declaracion variables
         String nombreJugador;
+        boolean jugando = true;
+
+        Scanner teclado = new Scanner(System.in);
+        Musica audio = new Musica();
+
+        audio.play("Videojuego/src/videojuego/audio/Batman.wav");
+
         
+       
         
         System.out.println("Batalla en Gotham city");
         System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n" +
@@ -33,8 +40,27 @@ public class Main {
         
         
         System.out.println(jugador1);
+
+        
+        while (jugando) {
+            System.out.println("\n===== PANEL DE OPCIONES =====");
+            System.out.println("1. Jugar");
+            System.out.println("2. Configuración");
+            System.out.println("3. Salir");
+            System.out.print("Elige una opción: ");
+
+            int opcion = teclado.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    audio.stop();
+                    System.out.println("¡Iniciando partida!");
+                    jugando = false;
+                    break;
         
         
         
+            }
+        }
     }
 }

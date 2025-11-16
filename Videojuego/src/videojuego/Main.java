@@ -3,6 +3,17 @@ package videojuego;
 import java.util.Scanner;
 
 public class Main {
+
+    public static void mensaje(){
+
+    System.out.println("\n===== PANEL DE OPCIONES =====");
+    System.out.println("1. Combatir");
+    System.out.println("2. Tienda");
+    System.out.println("3. Mis estadisticas");
+    System.out.println("4. Salir del juego");
+    System.out.print("Elige una opción: ");
+    
+}
    
     public static void main(String[] args) {
 
@@ -13,7 +24,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
 
-        audio.play("src/videojuego/audio/Batman.wav");
+        audio.play("Videojuego/src/videojuego/audio/Batman.wav");
 
         
        
@@ -36,7 +47,7 @@ public class Main {
         System.out.println("Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
         "\n");
 
-        System.out.println("_____________________                              _____________________\r\n" + //
+        System.out.println("____________________                              ____________________\r\n" + //
                         "`-._:  .:'   `:::  .:\\           |\\__/|           /::  .:'   `:::  .:.-'\r\n" + //
                         "    \\      :          \\          |:   |          /         :       /    \r\n" + //
                         "     \\     ::    .     `-_______/ ::   \\_______-'   .      ::   . /      \r\n" + //
@@ -59,20 +70,28 @@ public class Main {
 
         
         while (jugando) {
-            System.out.println("\n===== PANEL DE OPCIONES =====");
-            System.out.println("1. Jugar");
-            System.out.println("2. Configuración");
-            System.out.println("3. Salir");
-            System.out.print("Elige una opción: ");
+            
+            mensaje();
 
             int opcion = teclado.nextInt();
 
             switch (opcion) {
                 case 1:
                     audio.stop();
-                    System.out.println("¡Iniciando partida!");
+                    System.out.println("!Ha combatir¡");
+                    break;
+                case 2:
+                    System.out.println("!Ha gastar dinero¡");
+                    break;
+                case 3:
+                    System.out.println("Tus estadisticas");
+                    break;
+                case 4:
+                    System.out.println("!Adios, vuelva pronto¡");
                     jugando = false;
                     break;
+                default:
+                    System.out.println("uff.. por ahi no, siga las intrucciones");
         
         
         

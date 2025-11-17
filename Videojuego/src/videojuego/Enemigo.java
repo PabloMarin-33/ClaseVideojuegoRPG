@@ -7,7 +7,7 @@ public class Enemigo {
 
     public Enemigo(String nombre, int puntosAtaque) {
         this.nombre = nombre;
-        this.puntosAtaque = puntosAtaque;
+        this.puntosAtaque = 0;
     }
 
     public String getNombre() {
@@ -31,9 +31,17 @@ public class Enemigo {
         return "Enemigo{" + "nombre= " + nombre + ", puntosAtaque= " + puntosAtaque + '}';
     }
 
+    
+   
+    public Enemigo(String nombre) {
+        this.nombre = nombre;
+        calcularFuerzaE(); 
+    }
+
+
     public void calcularFuerzaE(){
-        int Random = (int)(Math.random()*4);
-        this.puntosAtaque = Random;
+        int random = (int)(Math.random()*21);
+        this.puntosAtaque = random;
     }
 
     public int soltarDinero(){

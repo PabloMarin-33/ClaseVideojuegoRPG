@@ -20,6 +20,8 @@ public class Main {
         // declaracion variables
         String nombreJugador;
         boolean jugando = true;
+        String [] listaE = {"Enigma", "El pinguino", "Posion Ivy", "Bane"};
+        int opcionFuerza;
 
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
@@ -29,7 +31,7 @@ public class Main {
         
        
         
-        System.out.println("Batalla en Gotham city");
+        System.out.println("\n ====Batalla en Gotham city==== \n");
         System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n" +
         "de gente desesperada, vas a investigar por curiosidad, no es hasta que ahí te encuentras \n" +
         "a Batman haciendo su trabajo interrogando lo a quien puedes asimilar que son gánsters \n" +
@@ -65,10 +67,31 @@ public class Main {
         
         Jugador jugador1 = new Jugador(nombreJugador, 0, 0, 0);
         
+        jugador1.calcularFuerzaJ();
+        System.out.println("Tu fuerza inicial es: " +jugador1.getPuntosAtaque());
         
-        System.out.println(jugador1);
+        do{
+        System.out.println("¿Te gustaría cambiar de fuerza?");
+        System.out.println("Recuerda que tienes solo dos batarangs(dinero) por usar");
+        System.out.println("Opcion 1 es reasignar tu fuerza actual por un batarang");
+        System.out.println("Opcion 2 significa que estás listo para adentrarte en Gotham");
+        
+        opcionFuerza = teclado.nextInt();
+        if (opcionFuerza == 1  && jugador1.getBatarangs() <= 0 ){
+        jugador1.calcularFuerzaJ();
+        System.out.println("Tu fuerza inicial es: " +jugador1.getPuntosAtaque());
+        jugador1.setBatarangs(-1);
+        }
+        else if(opcionFuerza == 2){
+            System.out.println("Preparate para la noche...");
+            jugando = true;
 
-        
+        }
+        else {
+            System.out.println("Esa opcion no existe");
+        }
+    }while(opcionFuerza!=2);
+
         while (jugando) {
             
             mensaje();
@@ -85,6 +108,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Tus estadisticas");
+                    System.out.println(jugador1);
                     break;
                 case 4:
                     System.out.println("!Adios, vuelva pronto¡");
@@ -97,5 +121,7 @@ public class Main {
         
             }
         }
+
     }
+
 }

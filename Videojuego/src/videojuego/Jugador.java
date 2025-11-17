@@ -48,6 +48,10 @@ public class Jugador {
         return "Jugador{" + "nombre= " + nombre + ", puntosSalud= " + puntosSalud + ", puntosAtaque= " + puntosAtaque + ", batarangs= " + batarangs + '}';
     }
     
+       public void calcularFuerzaJ(){
+        int Random = (int)(Math.random()*10);
+        this.puntosAtaque = Random;
+    }
     
     
 }

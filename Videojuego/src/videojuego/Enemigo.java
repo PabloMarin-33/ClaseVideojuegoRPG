@@ -30,6 +30,16 @@ public class Enemigo {
     public String toString() {
         return "Enemigo{" + "nombre= " + nombre + ", puntosAtaque= " + puntosAtaque + '}';
     }
+
+    public void calcularFuerzaE(){
+        int Random = (int)(Math.random()*4);
+        this.puntosAtaque = Random;
+    }
+
+    public int soltarDinero(){
+        int dineroE = (int)(Math.random()*10);
+        return dineroE;
+    }
     
     
     

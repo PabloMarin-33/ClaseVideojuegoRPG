@@ -1,7 +1,7 @@
 package videojuego;
 
-import javax.sound.sampled.*;
 import java.io.File;
+import javax.sound.sampled.*;
 
 public class Musica {
     private Clip clip;
@@ -14,6 +14,8 @@ public class Musica {
             clip.start();
         } catch (Exception e) {
             System.out.println("Error al reproducir audio: " + e.getMessage());
+        }finally{
+            System.out.println("Corriendo el videojuego");
         }
     }
 

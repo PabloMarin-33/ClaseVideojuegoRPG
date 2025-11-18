@@ -23,13 +23,26 @@ public class Main {
         System.out.println("Opcion 2 significa que estás listo para adentrarte en Gotham");
     }
 
+    public static void mensajeTienda() {
+
+        System.out.println("\n===== EQUIPAMIENTO =====");
+        System.out.println("1. Bat-Hacha---Precio: 9 Batarangs---Fuerza: 6");
+        System.out.println("2. Bat-Taser---Precio: 6 Batarangs---Fuerza: 3");
+        System.out.println("3. Spray Anti-Tiburones---Precio: 4 Batarangs---Fuerza: 2");
+        System.out.println("\n===== CURACION =====");
+        System.out.println("4. Vendas---Precio: 2 Batarangs---Curacion: +2");
+        System.out.println("5. Botiquin---Precio: 3 Batarangs---Curacion: +5");
+        System.out.println("Pulsa 6 para salir");
+
+    }
+
     public static void main(String[] args) {
 
         // declaracion variables
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
         String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
-        int opcionFuerza = 0, indice, botin, damage;
+        int opcionFuerza = 0, indice, botin, damage, opcionTienda;
 
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
@@ -39,7 +52,7 @@ public class Main {
         System.out.println("\n ====Batalla en Gotham city==== \n");
         System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
                 +
-                "de gente desesperada, vas a investigar por curiosidad, no es hasta que ahí te encuentras \n" +
+                "de gente desesperada, vas a investigar por curiosidad, no es hasta que te encuentras \n" +
                 "a Batman haciendo su trabajo interrogando lo a quien puedes asimilar que son gánsters \n" +
                 "de bajo nivel, no es hasta que Batman reconoce tu presencia y dice: \n" +
                 "\n" +
@@ -52,7 +65,8 @@ public class Main {
                 "que te puedas manejar por las calles. Por que hoy me vas a acompañar... \n" +
                 "\n");
 
-        System.out.println("Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
+        System.out.println(
+                "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
                         "\n");
 
         System.out.println("_____________________                              _____________________\r\n" + //
@@ -74,7 +88,7 @@ public class Main {
         Jugador jugador1 = new Jugador(nombreJugador);
 
         jugador1.calcularFuerzaJ();
-        System.out.println("Tu fuerza inicial es: " + jugador1.getPuntosAtaque()+ "\n");
+        System.out.println("Tu fuerza inicial es: " + jugador1.getPuntosAtaque() + "\n");
 
         do {
 
@@ -93,7 +107,7 @@ public class Main {
                         System.out.println("Tu nueva fuerza es: " + jugador1.getPuntosAtaque());
                         System.out.println("Oro restante: " + jugador1.getBatarangs() + "\n");
                     } else {
-                        System.out.println("\n No tienes batarangs suficientes para cambiar tu fuerza.\n");
+                        System.out.println("\n No tienes batarangs suficientes.\n");
                     }
                     break;
                 case 2:
@@ -142,7 +156,15 @@ public class Main {
 
                         // Pierde combate
                         damage = enemigo.getPuntosAtaque() - jugador1.getPuntosAtaque();
-                        jugador1.setPuntosSalud(Math.max(0, jugador1.getPuntosSalud() - damage));
+                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() - damage);
+
+                        if (jugador1.getPuntosSalud() < 0) {
+                            jugador1.setPuntosSalud(0);
+                            jugador1.getPuntosSalud();
+                                
+                                
+                            
+                        }
 
                         System.out.println(" ¡PERDISTE LA PELEA!");
                         System.out.println(enemigo.getNombre() + " te superó por " + damage + " puntos.");
@@ -160,9 +182,122 @@ public class Main {
                     audio.stop();
                     Musica audio1 = new Musica();
                     audio.play("Videojuego/src/videojuego/audio/Tienda.wav");
-
+                    
                     System.out.println("!Ha gastar dinero¡");
+                    do {
+                        System.out.println("\nTienes: " + jugador1.getBatarangs() + " batarangs en total\n");
+                        mensajeTienda();
+                        opcionTienda = teclado.nextInt();
+                        if (jugador1.getBatarangs() > 0) {
+
+                            switch (opcionTienda) {
+                                case 1:
+                                    if (jugador1.getBatarangs() >= 9) {
+
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 9);
+                                        jugador1.getBatarangs();
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 6);
+                                        jugador1.getPuntosAtaque();
+
+                                        if (jugador1.getBatarangs() < 0) {
+                                            jugador1.setBatarangs(0);
+                                            jugador1.getBatarangs();
+                                        }
+
+                                        System.out.println("Ha cambio de 9 batarangs has ganado 6 de fuerza");
+                                    } else {
+                                        System.out.println("No tienes suficiente batarangs, ");
+                                    }
+
+                                    break;
+
+                                case 2:
+                                    if (jugador1.getBatarangs() >= 6) {
+
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 6);
+                                        jugador1.getBatarangs();
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 3);
+                                        jugador1.getPuntosAtaque();
+
+                                        if (jugador1.getBatarangs() < 0) {
+                                            jugador1.setBatarangs(0);
+                                            jugador1.getBatarangs();
+                                        }
+
+                                        System.out.println("Ha cambio de 6 batarangs has ganado 3 de fuerza");
+                                    } else {
+                                        System.out.println("No tienes suficiente batarangs");
+                                    }
+
+                                    break;
+
+                                case 3:
+                                    if (jugador1.getBatarangs() >= 4) {
+
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 4);
+                                        jugador1.getBatarangs();
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 2);
+                                        jugador1.getPuntosAtaque();
+
+                                        if (jugador1.getBatarangs() < 0) {
+                                            jugador1.setBatarangs(0);
+                                            jugador1.getBatarangs();
+                                        }
+
+                                        System.out.println("Ha cambio de 4 batarangs has ganado 2 de fuerza");
+                                    } else {
+                                        System.out.println("No tienes suficiente batarangs");
+                                    }
+
+                                    break;
+
+                                case 4:
+                                    if (jugador1.getBatarangs() >= 2) {
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 2);
+                                        jugador1.getBatarangs();
+                                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 2);
+                                        jugador1.getPuntosSalud();
+
+                                        if (jugador1.getBatarangs() < 0) {
+                                            jugador1.setBatarangs(0);
+                                            jugador1.getBatarangs();
+                                        }
+
+                                        System.out.println("Te has curado 2 PS");
+                                    } else {
+                                        System.out.println("No tienes suficiente batarangs");
+                                    }
+
+                                    break;
+
+                                case 5:
+                                    if (jugador1.getBatarangs() >= 3) {
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 3);
+                                        jugador1.getBatarangs();
+                                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 5);
+                                        jugador1.getPuntosSalud();
+
+                                        if (jugador1.getBatarangs() < 0) {
+                                            jugador1.setBatarangs(0);
+                                            jugador1.getBatarangs();
+                                        }
+
+                                        System.out.println("has curado 5 PS");
+                                    } else {
+                                        System.out.println("No tienes suficiente batarangs");
+                                    }
+
+                                    break;
+
+                            }
+
+                        } else {
+                            System.out.println("No tienes dinero");
+                        }
+                    } while (opcionTienda != 6);
+
                     break;
+
                 case 3:
                     audio.stop();
                     System.out.println("Tus estadisticas");

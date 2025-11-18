@@ -55,7 +55,7 @@ public class Jugador {
     }
     
     public void calcularFuerzaJ(){
-        int Random = (int)(Math.random()*10);
+        int Random = (int)(Math.random()*11);
         this.puntosAtaque = Random;
     }
 

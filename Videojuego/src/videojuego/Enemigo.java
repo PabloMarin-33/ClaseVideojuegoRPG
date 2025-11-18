@@ -32,7 +32,7 @@ public class Enemigo {
     }
    
     public void calcularFuerzaE(){
-        int random = (int)(Math.random()*21);
+        int random = (int)(Math.random()*11);
         this.puntosAtaque = random;
     }
 

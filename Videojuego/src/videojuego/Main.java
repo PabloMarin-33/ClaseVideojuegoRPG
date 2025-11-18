@@ -52,8 +52,7 @@ public class Main {
                 "que te puedas manejar por las calles. Por que hoy me vas a acompañar... \n" +
                 "\n");
 
-        System.out.println(
-                "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
+        System.out.println("Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
                         "\n");
 
         System.out.println("_____________________                              _____________________\r\n" + //

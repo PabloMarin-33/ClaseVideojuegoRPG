@@ -29,11 +29,11 @@ public class Musica {
     }
 
     // Métodos específicos que reutilizan el central
-    public void play(String ruta) {
+    public void Play(String ruta) {
         reproducir(ruta);
     }
 
-    public void tienda(String ruta) {
+    public void Tienda(String ruta) {
         reproducir(ruta);
     }
 

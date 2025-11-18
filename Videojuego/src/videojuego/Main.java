@@ -6,11 +6,13 @@ public class Main {
 
     public static void mensaje() {
 
-        System.out.println("\n===== PANEL DE OPCIONES =====");
-        System.out.println("1. Combatir");
-        System.out.println("2. Tienda");
-        System.out.println("3. Mis estadisticas");
-        System.out.println("4. Salir del juego \n");
+        System.out.println("\n      PANEL DE OPCIONES \n" +
+                            "───────────────────────────────\n" + 
+                            "»1       Combatir \n" +
+                            "»2       Tienda \n" +
+                            "»3       Mis estadisticas \n" +
+                            "»4       Salir del juego \n" +
+                            "───────────────────────────────\n");
         System.out.print("Elige una opción: ");
 
     }
@@ -25,15 +27,18 @@ public class Main {
 
     public static void mensajeTienda() {
 
-        System.out.println("\n===== EQUIPAMIENTO =====");
-        System.out.println("1. Bat-Hacha---Precio: 9 Batarangs---Fuerza: 6");
-        System.out.println("2. Bat-Taser---Precio: 6 Batarangs---Fuerza: 3");
-        System.out.println("3. Spray Anti-Tiburones---Precio: 4 Batarangs---Fuerza: 2");
-        System.out.println("\n===== CURACION =====");
-        System.out.println("4. Vendas---Precio: 2 Batarangs---Curacion: +2");
-        System.out.println("5. Botiquin---Precio: 3 Batarangs---Curacion: +5");
-        System.out.println("Pulsa 6 para salir");
-
+        System.out.println("\n        EQUIPAMIENTO \n" +
+                "───────────────────────────────────────────────────────────\n" +
+                "» 1   Bat-Hacha " + " Precio:  9 Batarangs " + " Fuerza: 6" + "\n" +
+                "» 2   Bat-Taser " + " Precio:  6 Batarangs " + " Fuerza: 3" + "\n" +
+                "» 3   Spray Anti-Tiburones " + " Precio:  4 Batarangs " + " Fuerza: 2" + "\n" +
+                "\n                   CURACION \n" +
+                "───────────────────────────────────────────────────────────\n" +
+                "» 4   Vendas " + " Precio:  2 Batarangs " + " Curacion: +2" + "\n" +
+                "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n" +
+                "───────────────────────────────────────────────────────────\n" +
+                "» 6   para salir" + "\n");
+                System.out.println("Elige una opcion" + "\n");
     }
 
     public static void main(String[] args) {
@@ -47,23 +52,21 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
 
-        audio.play("Videojuego/src/videojuego/audio/Batman.wav");
+        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
 
-        System.out.println("\n ====Batalla en Gotham city==== \n");
-        System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
-                +
-                "de gente desesperada, vas a investigar por curiosidad, no es hasta que te encuentras \n" +
-                "a Batman haciendo su trabajo interrogando lo a quien puedes asimilar que son gánsters \n" +
-                "de bajo nivel, no es hasta que Batman reconoce tu presencia y dice: \n" +
+        System.out.println("\n Batalla en Gotham city \n");
+        System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"+
+                "de gente desesperada, vas a investigar por curiosidad, no es hasta que encuentras \n" +
+                "a Batman haciendo su trabajo, interrogando a lo que parecen gánsters de bajo nivel, \n" +
+                "El nota tu precencia, levanta apenas la mirada y dice: \n" +
                 "\n" +
-                "B: ...Tu... has sido testigo de algo que no deberías de haber visto. Saben tu cara... Pero no tu nombre... ¿Quién eres?...");
+                "B: ...Tu... has sido testigo de algo que no deberías de haber visto. Saben tu cara... Pero no tu nombre... ¿Quién eres?...\n");
 
         System.out.print("introduce tu nombre: ");
         nombreJugador = teclado.nextLine();
 
-        System.out.println("B: " + nombreJugador + " Tu noche acaba de empeorar y espero \n" +
-                "que te puedas manejar por las calles. Por que hoy me vas a acompañar... \n" +
-                "\n");
+        System.out.println("\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"+
+                            "Por que hoy me vas a acompañar... \n");
 
         System.out.println(
                 "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
@@ -161,9 +164,7 @@ public class Main {
                         if (jugador1.getPuntosSalud() < 0) {
                             jugador1.setPuntosSalud(0);
                             jugador1.getPuntosSalud();
-                                
-                                
-                            
+
                         }
 
                         System.out.println(" ¡PERDISTE LA PELEA!");
@@ -181,9 +182,9 @@ public class Main {
                 case 2:
                     audio.stop();
                     Musica audio1 = new Musica();
-                    audio.play("Videojuego/src/videojuego/audio/Tienda.wav");
-                    
-                    System.out.println("!Ha gastar dinero¡");
+                    audio.Play("Videojuego/src/videojuego/audio/Tienda.wav");
+
+                    System.out.println("\n!Ha gastar dinero¡");
                     do {
                         System.out.println("\nTienes: " + jugador1.getBatarangs() + " batarangs en total\n");
                         mensajeTienda();

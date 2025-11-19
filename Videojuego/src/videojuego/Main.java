@@ -6,13 +6,13 @@ public class Main {
 
     public static void mensaje() {
 
-        System.out.println("\n      PANEL DE OPCIONES \n" +
-                            "───────────────────────────────\n" + 
-                            "»1       Combatir \n" +
-                            "»2       Tienda \n" +
-                            "»3       Mis estadisticas \n" +
-                            "»4       Salir del juego \n" +
-                            "───────────────────────────────\n");
+        System.out.println("\n      PANEL DE OPCIONES \n"
+                + "───────────────────────────────\n"
+                + "»1       Combatir \n"
+                + "»2       Tienda \n"
+                + "»3       Mis estadisticas \n"
+                + "»4       Salir del juego \n"
+                + "───────────────────────────────\n");
         System.out.print("Elige una opción: ");
 
     }
@@ -27,18 +27,18 @@ public class Main {
 
     public static void mensajeTienda() {
 
-        System.out.println("\n        EQUIPAMIENTO \n" +
-                "───────────────────────────────────────────────────────────\n" +
-                "» 1   Bat-Hacha " + " Precio:  9 Batarangs " + " Fuerza: 6" + "\n" +
-                "» 2   Bat-Taser " + " Precio:  6 Batarangs " + " Fuerza: 3" + "\n" +
-                "» 3   Spray Anti-Tiburones " + " Precio:  4 Batarangs " + " Fuerza: 2" + "\n" +
-                "\n                   CURACION \n" +
-                "───────────────────────────────────────────────────────────\n" +
-                "» 4   Vendas " + " Precio:  2 Batarangs " + " Curacion: +2" + "\n" +
-                "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n" +
-                "───────────────────────────────────────────────────────────\n" +
-                "» 6   para salir" + "\n");
-                System.out.println("Elige una opcion" + "\n");
+        System.out.println("\n        EQUIPAMIENTO \n"
+                + "───────────────────────────────────────────────────────────\n"
+                + "» 1   Bat-Hacha " + " Precio:  9 Batarangs " + " Fuerza: 6" + "\n"
+                + "» 2   Bat-Taser " + " Precio:  6 Batarangs " + " Fuerza: 3" + "\n"
+                + "» 3   Spray Anti-Tiburones " + " Precio:  4 Batarangs " + " Fuerza: 2" + "\n"
+                + "\n                   CURACION \n"
+                + "───────────────────────────────────────────────────────────\n"
+                + "» 4   Vendas " + " Precio:  2 Batarangs " + " Curacion: +2" + "\n"
+                + "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n"
+                + "───────────────────────────────────────────────────────────\n"
+                + "» 6   para salir" + "\n");
+        System.out.println("Elige una opcion" + "\n");
     }
 
     public static void main(String[] args) {
@@ -46,8 +46,9 @@ public class Main {
         // declaracion variables
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
-        String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
+        String[] listaE = {"Enigma", "El pinguino", "Posion Ivy", "Bane"};
         int opcionFuerza = 0, indice, botin, damage, opcionTienda;
+        int contador = 0;
 
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
@@ -55,37 +56,51 @@ public class Main {
         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
 
         System.out.println("\n Batalla en Gotham city \n");
-        System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"+
-                "de gente desesperada, vas a investigar por curiosidad, no es hasta que encuentras \n" +
-                "a Batman haciendo su trabajo, interrogando a lo que parecen gánsters de bajo nivel, \n" +
-                "El nota tu precencia, levanta apenas la mirada y dice: \n" +
-                "\n" +
-                "B: ...Tu... has sido testigo de algo que no deberías de haber visto. Saben tu cara... Pero no tu nombre... ¿Quién eres?...\n");
+        System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
+                + "de gente desesperada, vas a investigar por curiosidad, no es hasta que encuentras \n"
+                + "a Batman haciendo su trabajo, interrogando a lo que parecen gánsters de bajo nivel, \n"
+                + "El nota tu precencia, levanta apenas la mirada y dice: \n"
+                + "\n"
+                + "B: ...Tu... has sido testigo de algo que no deberías de haber visto. Saben tu cara... Pero no tu nombre... ¿Quién eres?...\n");
 
         System.out.print("introduce tu nombre: ");
         nombreJugador = teclado.nextLine();
 
-        System.out.println("\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"+
-                            "Por que hoy me vas a acompañar... \n");
+        System.out.println("\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"
+                + "Por que hoy me vas a acompañar... \n");
 
         System.out.println(
-                "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n" +
-                        "\n");
+                "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n"
+                + "\n");
 
-        System.out.println("_____________________                              _____________________\r\n" + //
-                "`-._:  .:'   `:::  .:\\           |\\__/|           /::  .:'   `:::  .:.-'\r\n" + //
-                "    \\      :          \\          |:   |          /         :       /    \r\n" + //
-                "     \\     ::    .     `-_______/ ::   \\_______-'   .      ::   . /      \r\n" + //
-                "      |  :   :: ::'  :   :: ::'  :   :: ::'      :: ::'  :   :: :|       \r\n" + //
-                "      |     ;::         ;::         ;::         ;::         ;::  |       \r\n" + //
-                "      |  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:|       \r\n" + //
-                "      /     :           :           :           :           :    \\       \r\n" + //
-                "     /______::_____     ::    .     ::    .     ::   _____._::____\\      \r\n" + //
-                "                   `----._:: ::'  :   :: ::'  _.----'                    \r\n" + //
-                "                          `--.       ;::  .--'                           \r\n" + //
-                "                              `-. .:'  .-'                               \r\n" + //
-                "                                 \\    /                                  \r\n" + //
-                "                                  \\  /                                   \r\n" + //
+        System.out.println("_____________________                              _____________________\r\n"
+                + //
+                "`-._:  .:'   `:::  .:\\           |\\__/|           /::  .:'   `:::  .:.-'\r\n"
+                + //
+                "    \\      :          \\          |:   |          /         :       /    \r\n"
+                + //
+                "     \\     ::    .     `-_______/ ::   \\_______-'   .      ::   . /      \r\n"
+                + //
+                "      |  :   :: ::'  :   :: ::'  :   :: ::'      :: ::'  :   :: :|       \r\n"
+                + //
+                "      |     ;::         ;::         ;::         ;::         ;::  |       \r\n"
+                + //
+                "      |  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:|       \r\n"
+                + //
+                "      /     :           :           :           :           :    \\       \r\n"
+                + //
+                "     /______::_____     ::    .     ::    .     ::   _____._::____\\      \r\n"
+                + //
+                "                   `----._:: ::'  :   :: ::'  _.----'                    \r\n"
+                + //
+                "                          `--.       ;::  .--'                           \r\n"
+                + //
+                "                              `-. .:'  .-'                               \r\n"
+                + //
+                "                                 \\    /                                  \r\n"
+                + //
+                "                                  \\  /                                   \r\n"
+                + //
                 "                                   \\/ ");
 
         Jugador jugador1 = new Jugador(nombreJugador);
@@ -112,12 +127,14 @@ public class Main {
                     } else {
                         System.out.println("\n No tienes batarangs suficientes.\n");
                     }
+                    
                     break;
                 case 2:
                     System.out.println("\nPerfecto, Preparate para la noche...\n");
                     break;
                 default:
                     System.out.println("\n Opción inválida, bro, elige bien.\n");
+
                     break;
             }
         } while (opcionFuerza != 2);
@@ -130,7 +147,8 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("!Ha combatir¡");
+                    System.out.println("!A combatir¡");
+                    contador++;
 
                     indice = (int) (Math.random() * listaE.length);
                     nombreEnemigo = listaE[indice];
@@ -139,9 +157,9 @@ public class Main {
 
                     enemigo.calcularFuerzaE();
 
-                    System.out.println(" Un enemigo aparece: " + enemigo.getNombre());
-                    System.out.println(" Su fuerza es: " + enemigo.getPuntosAtaque());
-                    System.out.println(" Tu fuerza es: " + jugador1.getPuntosAtaque());
+                    Jugador.mostrarMensaje(" Un enemigo aparece: " + enemigo.getNombre());
+                    Jugador.mostrarMensaje(" Su fuerza es: " + enemigo.getPuntosAtaque());
+                    Jugador.mostrarMensaje(" Tu fuerza es: " + jugador1.getPuntosAtaque());
                     System.out.println("─────────────────────────────");
 
                     if (jugador1.getPuntosAtaque() >= enemigo.getPuntosAtaque()) {
@@ -151,9 +169,11 @@ public class Main {
                         jugador1.setBatarangs(jugador1.getBatarangs() + botin);
 
                         System.out.println("¡GANASTE EL COMBATE!");
-                        System.out.println("Has derrotado a " + enemigo.getNombre());
-                        System.out.println("Recolectas " + botin + " batarangs.");
-                        System.out.println("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
+                        Jugador.mostrarMensaje("Has derrotado a " + enemigo.getNombre());
+                        Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
+                        Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
+                        
+                        Jugador.mostrarMensaje("Has derrotado " + contador + " enemigo/s.");
 
                     } else {
 
@@ -167,16 +187,23 @@ public class Main {
 
                         }
 
-                        System.out.println(" ¡PERDISTE LA PELEA!");
-                        System.out.println(enemigo.getNombre() + " te superó por " + damage + " puntos.");
-                        System.out.println("Pierdes " + damage + " puntos de salud.");
-                        System.out.println("Salud restante: " + jugador1.getPuntosSalud() + "\n");
+                        Jugador.mostrarMensaje(" ¡PERDISTE LA PELEA!");
+                        Jugador.mostrarMensaje(enemigo.getNombre() + " te superó por " + damage + " puntos.");
+                        Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
+                        Jugador.mostrarMensaje("Salud restante: " + jugador1.getPuntosSalud() + "\n");
 
                         // ¿Murió?
                         if (jugador1.getPuntosSalud() <= 0) {
                             jugador1.morirPorEnemigo(enemigo);
                             jugando = false;
                         }
+                    }
+                    
+                    
+                    if (contador == 4){
+                        System.out.println("Un enemigo terrorífico se acerca... estas dispuesto a seguir");
+                        Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador);
+                        Jugador.mostrarMensaje("!cuidado ah aparecido el " + jefefinal1.getNombreJefe()+'¡');
                     }
                     break;
                 case 2:

@@ -1,9 +1,17 @@
 package videojuego;
 
+/**
+ *
+ * @author usuario
+ */
 public class Jugador {
     private String nombre;
     private int puntosSalud, puntosAtaque, batarangs;
 
+    /**
+     *
+     * @param nombre
+     */
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntosSalud = 20;
@@ -11,38 +19,74 @@ public class Jugador {
         this.batarangs = 2;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPuntosSalud() {
         return puntosSalud;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPuntosAtaque() {
         return puntosAtaque;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBatarangs() {
         return batarangs;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @param puntosSalud
+     */
     public void setPuntosSalud(int puntosSalud) {
         this.puntosSalud = puntosSalud;
     }
 
+    /**
+     *
+     * @param puntosAtaque
+     */
     public void setPuntosAtaque(int puntosAtaque) {
         this.puntosAtaque = puntosAtaque;
     }
 
+    /**
+     *
+     * @param batarangs
+     */
     public void setBatarangs(int batarangs) {
         this.batarangs = batarangs;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "\n PERFIL DEL JUGADOR \n" +
@@ -54,11 +98,18 @@ public class Jugador {
             "────────────────────────────\n";
     }
     
+    /**
+     *
+     */
     public void calcularFuerzaJ(){
         int Random = (int)(Math.random()*11);
         this.puntosAtaque = Random;
     }
 
+    /**
+     *
+     * @param enemigo
+     */
     public void morirPorEnemigo(Enemigo enemigo) {
         System.out.println("Has caído en Gotham...");
 
@@ -82,5 +133,16 @@ public class Jugador {
         System.out.println("GAME OVER");
         this.puntosSalud = 0; // asegurar que no quede negativo
     }
+    
+    /**
+     *
+     * @param mensaje
+     */
+    public static void mostrarMensaje(String mensaje) {
+    try {
+        System.out.println(mensaje);
+        Thread.sleep(700); // podés ajustar el tiempo
+    } catch (InterruptedException e) {}
+}
 }
 

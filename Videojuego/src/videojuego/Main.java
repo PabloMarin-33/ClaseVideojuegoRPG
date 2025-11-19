@@ -23,6 +23,7 @@ public class Main {
         System.out.println("Recuerda que tienes solo dos batarangs(dinero) por usar");
         System.out.println("Opcion 1 es reasignar tu fuerza actual por un batarang");
         System.out.println("Opcion 2 significa que estás listo para adentrarte en Gotham");
+        System.out.print("Elige una opcion: ");
     }
 
     public static void mensajeTienda() {
@@ -38,7 +39,7 @@ public class Main {
                 + "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n"
                 + "───────────────────────────────────────────────────────────\n"
                 + "» 6   para salir" + "\n");
-        System.out.println("Elige una opcion" + "\n");
+        System.out.print("Elige una opcion: " + "\n");
     }
 
     public static void main(String[] args) {
@@ -46,7 +47,7 @@ public class Main {
         // declaracion variables
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
-        String[] listaE = {"Enigma", "El pinguino", "Posion Ivy", "Bane"};
+        String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
         int opcionFuerza = 0, indice, botin, damage, opcionTienda;
         int contador = 0;
 
@@ -66,12 +67,13 @@ public class Main {
         System.out.print("introduce tu nombre: ");
         nombreJugador = teclado.nextLine();
 
-        System.out.println("\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"
-                + "Por que hoy me vas a acompañar... \n");
+        System.out.println(
+                "\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"
+                        + "Por que hoy me vas a acompañar... \n");
 
         System.out.println(
                 "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n"
-                + "\n");
+                        + "\n");
 
         System.out.println("_____________________                              _____________________\r\n"
                 + //
@@ -121,13 +123,13 @@ public class Main {
                         jugador1.setBatarangs(jugador1.getBatarangs() - 1);
                         jugador1.calcularFuerzaJ();
 
-                        System.out.println("\n Has reasignado tu fuerza por 1 batarang.");
+                        System.out.println("\nHas reasignado tu fuerza por 1 batarang.");
                         System.out.println("Tu nueva fuerza es: " + jugador1.getPuntosAtaque());
                         System.out.println("Oro restante: " + jugador1.getBatarangs() + "\n");
                     } else {
                         System.out.println("\n No tienes batarangs suficientes.\n");
                     }
-                    
+
                     break;
                 case 2:
                     System.out.println("\nPerfecto, Preparate para la noche...\n");
@@ -148,7 +150,6 @@ public class Main {
             switch (opcion) {
                 case 1:
                     System.out.println("!A combatir¡");
-                    contador++;
 
                     indice = (int) (Math.random() * listaE.length);
                     nombreEnemigo = listaE[indice];
@@ -172,8 +173,8 @@ public class Main {
                         Jugador.mostrarMensaje("Has derrotado a " + enemigo.getNombre());
                         Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
                         Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
-                        
-                        Jugador.mostrarMensaje("Has derrotado " + contador + " enemigo/s.");
+                        contador++;
+                        Jugador.mostrarMensaje("Has derrotado " + contador + " enemigo/s.\n");
 
                     } else {
 
@@ -186,6 +187,7 @@ public class Main {
                             jugador1.getPuntosSalud();
 
                         }
+                    
 
                         Jugador.mostrarMensaje(" ¡PERDISTE LA PELEA!");
                         Jugador.mostrarMensaje(enemigo.getNombre() + " te superó por " + damage + " puntos.");
@@ -194,21 +196,59 @@ public class Main {
 
                         // ¿Murió?
                         if (jugador1.getPuntosSalud() <= 0) {
-                            jugador1.morirPorEnemigo(enemigo);
-                            jugando = false;
+                                   jugador1.morirPorEnemigo(enemigo);
+                                   jugando = false;
                         }
                     }
-                    
-                    
-                    if (contador == 4){
-                        System.out.println("Un enemigo terrorífico se acerca... estas dispuesto a seguir");
+                     
+
+                    if (contador == 2) {
+                        System.out.println("──────────────────────────────────────────────────────────────\n"
+                            +"Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
                         Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador);
-                        Jugador.mostrarMensaje("!cuidado ah aparecido el " + jefefinal1.getNombreJefe()+'¡');
+                        Jugador.mostrarMensaje("!Cuidado ah aparecido el " + jefefinal1.getNombreJefe() + '¡'+"\n");
+                        
+                        jefefinal1.llamarJefe(jugador1);
+
+                        if (jugador1.getPuntosAtaque() >= jefefinal1.getPuntosAtaqueJefe()) {
+
+                        // Gana combate
+                        botin = enemigo.soltarDinero();
+                        jugador1.setBatarangs(jugador1.getBatarangs() + botin);
+
+                        System.out.println("───────────────────────────────"+
+                                            "\n¡LE HAS GANADO A "+ jefefinal1.getNombreJefe()+ '!'+"\n");
+                        
+                        Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
+                        Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
+
+                        } else {
+
+                            // Pierde combate
+                            damage = enemigo.getPuntosAtaque() - jugador1.getPuntosAtaque();
+                            jugador1.setPuntosSalud(jugador1.getPuntosSalud() - damage);
+
+                                if (jugador1.getPuntosSalud() < 0) {
+                                    jugador1.setPuntosSalud(0);
+                                    jugador1.getPuntosSalud();
+
+                                }
+
+                            Jugador.mostrarMensaje(" ¡PERDISTE LA PELEA!");
+                            Jugador.mostrarMensaje(enemigo.getNombre() + " te superó por " + damage + " puntos.");
+                            Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
+                            Jugador.mostrarMensaje("Salud restante: " + jugador1.getPuntosSalud() + "\n");
+                               
+                            if (jugador1.getPuntosSalud() <= 0) {
+                                   jugador1.morirPorEnemigo(enemigo);
+                                   jugando = false;
+                                }
+                        }
                     }
+                     
                     break;
                 case 2:
                     audio.stop();
-                    Musica audio1 = new Musica();
                     audio.Play("Videojuego/src/videojuego/audio/Tienda.wav");
 
                     System.out.println("\n!Ha gastar dinero¡");

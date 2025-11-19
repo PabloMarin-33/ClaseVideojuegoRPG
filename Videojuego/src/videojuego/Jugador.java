@@ -141,8 +141,8 @@ public class Jugador {
     public static void mostrarMensaje(String mensaje) {
     try {
         System.out.println(mensaje);
-        Thread.sleep(700); // podés ajustar el tiempo
-    } catch (InterruptedException e) {}
-}
+        Thread.sleep(600); // podés ajustar el tiempo
+        }  catch (InterruptedException e) {}
+    }
 }
 

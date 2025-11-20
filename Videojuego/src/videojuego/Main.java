@@ -41,6 +41,7 @@ public class Main {
                 + "» 6   para salir" + "\n");
         System.out.print("Elige una opcion: " );
     }
+    
 
     public static void main(String[] args) {
 
@@ -205,14 +206,16 @@ public class Main {
                         audio.stop();
                         System.out.println("──────────────────────────────────────────────────────────────\n"
                             +"Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
+                                                
                         Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador);
-                        Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!"+"\n");
                         audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
+                        Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!"+"\n");
                         try {
                             Thread.sleep(11552); 
                         } catch (InterruptedException e) {
                             System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
+                        
                         jefefinal1.llamarJefe(jugador1);
     
                         if (jugador1.getPuntosAtaque() >= jefefinal1.getPuntosAtaqueJefe()) {
@@ -248,6 +251,11 @@ public class Main {
                                    jugador1.morirPorEnemigo(enemigo);
                                    jugando = false;
                                 }
+                        }
+                         try {
+                            Thread.sleep(1500); 
+                        } catch (InterruptedException e) {
+                            System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
                         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
                     }

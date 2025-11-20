@@ -50,13 +50,14 @@ public class Jefefinal {
 
     public void llamarJefe(Jugador jugador) {
         System.out.println("El jefe fue llamado por " + jugador.getNombre() + ", tienes " + jugador.getPuntosSalud() + " de vida." + "\n");
+        
 
         if (jugador.getPuntosSalud() >= 50) {
             System.out.println("Ya no juegas por que tu nivel esta muy alto");
             return;
 
         }
-
+        
         int minJefe = 0;
         int maxjefe = 0;
         
@@ -64,6 +65,7 @@ public class Jefefinal {
             minJefe = 25;
             maxjefe = 50;
 
+            
             setNombreJefe("Heath Ledger");
             System.out.println("!A aparecido el jefe " + getNombreJefe());
             
@@ -71,6 +73,7 @@ public class Jefefinal {
         } else if (jugador.getPuntosSalud() >= 15) {
             minJefe = 15;
             maxjefe = 25;
+
             setNombreJefe("Mark Hamill");
             System.out.println("!A aparecido el jefe " + getNombreJefe());
 

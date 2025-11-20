@@ -37,6 +37,11 @@ public class Musica {
         reproducir(ruta);
     }
 
+    public void PresentacionJefe(String ruta) {
+        reproducir(ruta);
+    }
+
+
     public void stop() {
         if (clip != null && clip.isRunning()) {
             clip.stop();

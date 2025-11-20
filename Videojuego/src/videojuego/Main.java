@@ -39,7 +39,7 @@ public class Main {
                 + "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n"
                 + "───────────────────────────────────────────────────────────\n"
                 + "» 6   para salir" + "\n");
-        System.out.print("Elige una opcion: " + "\n");
+        System.out.print("Elige una opcion: " );
     }
 
     public static void main(String[] args) {
@@ -149,7 +149,7 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("!A combatir¡");
+                    System.out.println("¡A combatir!");
 
                     indice = (int) (Math.random() * listaE.length);
                     nombreEnemigo = listaE[indice];
@@ -201,15 +201,20 @@ public class Main {
                         }
                     }
                      
-
                     if (contador == 2) {
+                        audio.stop();
                         System.out.println("──────────────────────────────────────────────────────────────\n"
                             +"Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
                         Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador);
-                        Jugador.mostrarMensaje("!Cuidado ah aparecido el " + jefefinal1.getNombreJefe() + '¡'+"\n");
-                        
+                        Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!"+"\n");
+                        audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
+                        try {
+                            Thread.sleep(11552); 
+                        } catch (InterruptedException e) {
+                            System.out.println("Error en la espera del jefe: " + e.getMessage());
+                        }
                         jefefinal1.llamarJefe(jugador1);
-
+    
                         if (jugador1.getPuntosAtaque() >= jefefinal1.getPuntosAtaqueJefe()) {
 
                         // Gana combate
@@ -244,6 +249,7 @@ public class Main {
                                    jugando = false;
                                 }
                         }
+                        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
                     }
                      
                     break;
@@ -251,7 +257,7 @@ public class Main {
                     audio.stop();
                     audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
 
-                    System.out.println("\n!Ha gastar dinero¡");
+                    System.out.println("\n¡Ha gastar dinero!");
                     do {
                         System.out.println("\nTienes: " + jugador1.getBatarangs() + " batarangs en total\n");
                         mensajeTienda();
@@ -363,16 +369,16 @@ public class Main {
                             System.out.println("No tienes dinero");
                         }
                     } while (opcionTienda != 6);
+                    audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
 
                     break;
 
                 case 3:
-                    audio.stop();
                     System.out.println("Tus estadisticas");
                     System.out.println(jugador1);
                     break;
                 case 4:
-                    System.out.println("!Adios, vuelva pronto¡");
+                    System.out.println("¡Adios, vuelva pronto!");
                     jugando = false;
                     break;
                 default:

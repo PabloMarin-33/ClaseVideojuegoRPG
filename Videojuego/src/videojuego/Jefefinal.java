@@ -1,7 +1,5 @@
 package videojuego;
 
-import java.util.Scanner;
-
 /**
  *
  * @author usuario

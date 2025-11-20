@@ -249,7 +249,7 @@ public class Main {
                     break;
                 case 2:
                     audio.stop();
-                    audio.Play("Videojuego/src/videojuego/audio/Tienda.wav");
+                    audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
 
                     System.out.println("\n!Ha gastar dinero¡");
                     do {

@@ -2,8 +2,15 @@ package videojuego;
 
 import java.util.Scanner;
 
+/**Proyecto: Videojuego RPG
+ *Versión: 1.0
+ * @author Tomás Cano Y Pablo Marín
+ */
 public class Main {
 
+    /**
+     *Función void llamada mensaje que devuelve el panel de opciones principal del juego
+     */
     public static void mensaje() {
 
         System.out.println("\n      PANEL DE OPCIONES \n"
@@ -17,6 +24,9 @@ public class Main {
 
     }
 
+    /**
+     *Función void llamada mensaje2 que devuelve en el panel de opciones para reajustar la fuerza del jugador
+     */
     public static void mensaje2() {
 
         System.out.println("¿Te gustaría cambiar de fuerza? \n");
@@ -26,6 +36,9 @@ public class Main {
         System.out.print("Elige una opcion: ");
     }
 
+    /**
+     *Función void llamada mensajeTienda que devuelve el panal de opciones de los objetos de la tienda con los cambios de estadísticas y costes
+     */
     public static void mensajeTienda() {
 
         System.out.println("\n        EQUIPAMIENTO \n"
@@ -42,21 +55,31 @@ public class Main {
         System.out.print("Elige una opcion: " );
     }
     
-
+    /**
+     *Main donde ocurre los eventos principales del juego conla utilizacion de las clases 
+     * @param args
+     */
     public static void main(String[] args) {
 
-        // declaracion variables
+        /**
+         *Declaración de variables que se utilizaran a lo largo del main
+         */
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
         String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
         int opcionFuerza = 0, indice, botin, damage, opcionTienda;
         int contador = 0;
-
+      
+        /**
+        *Declarando el Scanner(teclado) a la par que la música que se escuchará a lo largo del juego
+        */
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
-
+        //Inicio de música
         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
-
+        /**
+        *Introducción del juego donde el jugador se inversirá y se declara(Jugador1) en el juego hasta que le piden que inserte su nombre en String 
+        */
         System.out.println("\n Batalla en Gotham city \n");
         System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
                 + "de gente desesperada, vas a investigar por curiosidad, no es hasta que encuentras \n"
@@ -107,7 +130,10 @@ public class Main {
                 "                                   \\/ ");
 
         Jugador jugador1 = new Jugador(nombreJugador);
-
+        /**
+        *Bucle en el que se le presentará al jugador con la opción de restablcer el valor de su fuerza a cambio de dinero. Esto se ha realizado a través de un bucle(do-while) 
+        * con un pecheño panel de opciones(switch) y una condiocional(if) para que el dinero no vaya a numeros negativos
+        */
         jugador1.calcularFuerzaJ();
         System.out.println("Tu fuerza inicial es: " + jugador1.getPuntosAtaque() + "\n");
 
@@ -141,7 +167,10 @@ public class Main {
                     break;
             }
         } while (opcionFuerza != 2);
-
+        /**
+        *Bucle en el que se le presentará al jugador el principal panel de opcione que el jugador debera escoger una delas opciones(switch) 
+        * en bucle(do-while) hasta sus ps estén a 0 o eliga salir del juego.
+        */
         while (jugando) {
 
             mensaje();
@@ -149,6 +178,10 @@ public class Main {
             int opcion = teclado.nextInt();
 
             switch (opcion) {
+                /**
+                *Primera elección en el cual se le presentará un enemigo con sus puntos de ataque. El caombate acába cuando el
+                * jugador supera los puntes de ataque del enemigo o sus PS se reducen a 0               
+                */
                 case 1:
                     System.out.println("¡A combatir!");
 
@@ -201,7 +234,10 @@ public class Main {
                                    jugando = false;
                         }
                     }
-                     
+                     /**
+                    *Al combatir hasta cierta cantidad de enemigos se enseñara a un nuevo tipo de enemigo con música e una pequeña introducción
+                    * un Jefe del cual dependiendo(if-else) de tus PS podrá salir tres variaciones del Jefe
+                    */
                     if (contador == 2) {
                         audio.stop();
                         System.out.println("──────────────────────────────────────────────────────────────\n"
@@ -261,6 +297,10 @@ public class Main {
                     }
                      
                     break;
+                    /**
+                    *Segunda opción de la cual es la tienda de la cual se mostrará un nuevo panel de control para los objetos que puede comprar
+                    *todo esto mientras(if-else) tengas la contidad suficiente de dinero.
+                    */
                 case 2:
                     audio.stop();
                     audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
@@ -380,11 +420,16 @@ public class Main {
                     audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
 
                     break;
-
+                   /**
+                    *Tercera opcion de la cual se muestra las estadísticas del jugador, a través de un método toString
+                    */
                 case 3:
                     System.out.println("Tus estadisticas");
                     System.out.println(jugador1);
                     break;
+                    /**
+                    *Cuarta opción que essalir del juego combiendo el valor del Booleano
+                    */
                 case 4:
                     System.out.println("¡Adios, vuelva pronto!");
                     jugando = false;

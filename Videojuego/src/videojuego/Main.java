@@ -78,7 +78,7 @@ public class Main {
         //Inicio de música
         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
         /**
-        *Introducción del juego donde el jugador se inversirá y se declara(Jugador1) en el juego hasta que le piden que inserte su nombre en String 
+        *Introducción del juego donde el jugador se adentrara, y se declara(Jugador1) en el juego hasta que le piden que inserte su nombre en String 
         */
         System.out.println("\n Batalla en Gotham city \n");
         System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
@@ -132,7 +132,7 @@ public class Main {
         Jugador jugador1 = new Jugador(nombreJugador);
         /**
         *Bucle en el que se le presentará al jugador con la opción de restablcer el valor de su fuerza a cambio de dinero. Esto se ha realizado a través de un bucle(do-while) 
-        * con un pecheño panel de opciones(switch) y una condiocional(if) para que el dinero no vaya a numeros negativos
+        * con un pequeño panel de opciones(switch) y una condiocional(if) para que el dinero no vaya a numeros negativos
         */
         jugador1.calcularFuerzaJ();
         System.out.println("Tu fuerza inicial es: " + jugador1.getPuntosAtaque() + "\n");
@@ -238,7 +238,7 @@ public class Main {
                     *Al combatir hasta cierta cantidad de enemigos se enseñara a un nuevo tipo de enemigo con música e una pequeña introducción
                     * un Jefe del cual dependiendo(if-else) de tus PS podrá salir tres variaciones del Jefe
                     */
-                    if (contador == 2) {
+                    if (contador == 5) {
                         audio.stop();
                         System.out.println("──────────────────────────────────────────────────────────────\n"
                             +"Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
@@ -246,6 +246,10 @@ public class Main {
                         Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador);
                         audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
                         Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!"+"\n");
+                        /**
+                         * Aqui se espera 11 segundos para que suene el sonido de la presentacion dela jefe
+                         * Si la ruta del archivo es incorrecta o no encotrada el progarama te muestra el mensaje pero sigue con el juego pero sin musica en esta parte
+                        */
                         try {
                             Thread.sleep(11552); 
                         } catch (InterruptedException e) {
@@ -428,7 +432,7 @@ public class Main {
                     System.out.println(jugador1);
                     break;
                     /**
-                    *Cuarta opción que essalir del juego combiendo el valor del Booleano
+                    *Cuarta opción que es salir del juego combiendo el valor del Booleano
                     */
                 case 4:
                     System.out.println("¡Adios, vuelva pronto!");

@@ -1,7 +1,7 @@
 package videojuego;
 
 /**
- *Clase del Jugador
+ *Declaracion de atributos
  * @author usuario
  */
 public class Jugador {
@@ -9,7 +9,7 @@ public class Jugador {
     private int puntosSalud, puntosAtaque, batarangs;
 
     /**
-     *Declaración de los atributos
+     *Declaración del objeto
      * @param nombre
      */
     public Jugador(String nombre) {
@@ -68,7 +68,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función set que restablece el valor del int de los Puntos de Ataque del jugador
      * @param puntosAtaque
      */
     public void setPuntosAtaque(int puntosAtaque) {
@@ -76,7 +76,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función set que restablece el valor del int de los Batarangs(dinero) del jugador
      * @param batarangs
      */
     public void setBatarangs(int batarangs) {
@@ -84,7 +84,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función toString para que se muestren los atributos del jugador
      * @return
      */
     @Override
@@ -99,7 +99,7 @@ public class Jugador {
     }
     
     /**
-     *
+     *Función que asigna un número aleatorio a los Puntos de Ataque
      */
     public void calcularFuerzaJ(){
         int Random = (int)(Math.random()*11);
@@ -107,7 +107,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Funcion que muestra las múltiples pantallas de GAME OVER
      * @param enemigo
      */
     public void morirPorEnemigo(Enemigo enemigo) {
@@ -135,7 +135,7 @@ public class Jugador {
     }
     
     /**
-     *
+     *Función para asegurar que todo este calculado a tiempo apropiado
      * @param mensaje
      */
     public static void mostrarMensaje(String mensaje) {

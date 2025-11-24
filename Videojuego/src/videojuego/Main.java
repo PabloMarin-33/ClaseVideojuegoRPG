@@ -25,7 +25,7 @@ public class Main {
     }
 
     /**
-     *Función void llamada mensaje2 que devuelve en el panel de opciones para reajustar la fuerza del jugador
+     *Función void que devuelve las opciones para reajustar la fuerza del jugador
      */
     public static void mensaje2() {
 
@@ -37,7 +37,7 @@ public class Main {
     }
 
     /**
-     *Función void llamada mensajeTienda que devuelve el panal de opciones de los objetos de la tienda con los cambios de estadísticas y costes
+     *Función void que devuelve de los objetos de la tienda con los cambios de estadísticas y costes
      */
     public static void mensajeTienda() {
 
@@ -55,14 +55,10 @@ public class Main {
         System.out.print("Elige una opcion: " );
     }
     
-    /**
-     *Main donde ocurre los eventos principales del juego conla utilizacion de las clases 
-     * @param args
-     */
     public static void main(String[] args) {
 
         /**
-         *Declaración de variables que se utilizaran a lo largo del main
+         *Declaración de variables
          */
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
@@ -71,14 +67,15 @@ public class Main {
         int contador = 0;
       
         /**
-        *Declarando el Scanner(teclado) a la par que la música que se escuchará a lo largo del juego
+        *Declarando el Scanner(teclado) y musica
         */
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
-        //Inicio de música
+
         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
         /**
-        *Introducción del juego donde el jugador se adentrara, y se declara(Jugador1) en el juego hasta que le piden que inserte su nombre en String 
+        *Introducción del juego donde el jugador se adentrara, y se declara(Jugador1
+        * ) en el juego hasta que le piden que inserte su nombre en String 
         */
         System.out.println("\n Batalla en Gotham city \n");
         System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
@@ -131,8 +128,10 @@ public class Main {
 
         Jugador jugador1 = new Jugador(nombreJugador);
         /**
-        *Bucle en el que se le presentará al jugador con la opción de restablcer el valor de su fuerza a cambio de dinero. Esto se ha realizado a través de un bucle(do-while) 
-        * con un pequeño panel de opciones(switch) y una condiocional(if) para que el dinero no vaya a numeros negativos
+        *Bucle en el que se le presentará al jugador con la opción de restablcer 
+        * el valor de su fuerza a cambio de dinero. Esto se ha realizado a través
+        * de un bucle(do-while)  con un pequeño panel de opciones(switch) y una condiocional(if)
+        * para que el dinero no vaya a numeros negativos
         */
         jugador1.calcularFuerzaJ();
         System.out.println("Tu fuerza inicial es: " + jugador1.getPuntosAtaque() + "\n");
@@ -147,7 +146,7 @@ public class Main {
                 case 1:
                     if (jugador1.getBatarangs() > 0) {
 
-                        jugador1.setBatarangs(jugador1.getBatarangs() - 1);
+                        jugador1.setBatarangs(jugador1.getBatarangs() - 1); //Se resta del dinero del jugador
                         jugador1.calcularFuerzaJ();
 
                         System.out.println("\nHas reasignado tu fuerza por 1 batarang.");
@@ -168,7 +167,8 @@ public class Main {
             }
         } while (opcionFuerza != 2);
         /**
-        *Bucle en el que se le presentará al jugador el principal panel de opcione que el jugador debera escoger una delas opciones(switch) 
+        *Bucle en el que se le presentará al jugador el principal panel de opciones
+        * que el jugador debera escoger una delas opciones(switch) 
         * en bucle(do-while) hasta sus ps estén a 0 o eliga salir del juego.
         */
         while (jugando) {
@@ -179,13 +179,14 @@ public class Main {
 
             switch (opcion) {
                 /**
-                *Primera elección en el cual se le presentará un enemigo con sus puntos de ataque. El caombate acába cuando el
-                * jugador supera los puntes de ataque del enemigo o sus PS se reducen a 0               
+                *Primera elección en el cual se le presentará un enemigo con sus puntos de ataque.
+                * El caombate acába cuando el jugador supera los puntes de
+                * ataque del enemigo o sus PS se reducen a 0               
                 */
                 case 1:
                     System.out.println("¡A combatir!");
 
-                    indice = (int) (Math.random() * listaE.length);
+                    indice = (int) (Math.random() * listaE.length); //Se escoge un nombre del array de enemigos(65)
                     nombreEnemigo = listaE[indice];
 
                     Enemigo enemigo = new Enemigo(nombreEnemigo);
@@ -216,7 +217,7 @@ public class Main {
                         damage = enemigo.getPuntosAtaque() - jugador1.getPuntosAtaque();
                         jugador1.setPuntosSalud(jugador1.getPuntosSalud() - damage);
 
-                        if (jugador1.getPuntosSalud() < 0) {
+                        if (jugador1.getPuntosSalud() < 0) {//condicion que para que los PS no se reduzcan de 0
                             jugador1.setPuntosSalud(0);
                             jugador1.getPuntosSalud();
 
@@ -235,7 +236,8 @@ public class Main {
                         }
                     }
                      /**
-                    *Al combatir hasta cierta cantidad de enemigos se enseñara a un nuevo tipo de enemigo con música e una pequeña introducción
+                    *Al combatir hasta cierta cantidad de enemigos se enseñara a 
+                    * un nuevo tipo de enemigo con música e una pequeña introducción 
                     * un Jefe del cual dependiendo(if-else) de tus PS podrá salir tres variaciones del Jefe
                     */
                     if (contador == 5) {
@@ -243,15 +245,17 @@ public class Main {
                         System.out.println("──────────────────────────────────────────────────────────────\n"
                             +"Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
                                                 
-                        Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador);
+                        Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador); 
                         audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
                         Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!"+"\n");
                         /**
-                         * Aqui se espera 11 segundos para que suene el sonido de la presentacion dela jefe
-                         * Si la ruta del archivo es incorrecta o no encotrada el progarama te muestra el mensaje pero sigue con el juego pero sin musica en esta parte
+                         * Aqui se espera 11 segundos para que suene el sonido de la
+                         * presentacion dela jefe Si la ruta del archivo es incorrecta
+                         * o no encotrada el progarama te muestra el mensaje pero 
+                         * sigue con el juego pero sin musica en esta parte
                         */
                         try {
-                            Thread.sleep(11552); 
+                            Thread.sleep(11552); //Se detendra estos segundos el programa hasta que pase el sonido de arriba
                         } catch (InterruptedException e) {
                             System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
@@ -302,7 +306,8 @@ public class Main {
                      
                     break;
                     /**
-                    *Segunda opción de la cual es la tienda de la cual se mostrará un nuevo panel de control para los objetos que puede comprar
+                    *Segunda opción de la cual es la tienda de la cual se mostrará 
+                    * un nuevo panel de control para los objetos que puede comprar 
                     *todo esto mientras(if-else) tengas la contidad suficiente de dinero.
                     */
                 case 2:
@@ -310,22 +315,22 @@ public class Main {
                     audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
 
                     System.out.println("\n¡Ha gastar dinero!");
-                    do {
+                    do {//Bucle para que el jugador pueda comprar más de un objeto
                         System.out.println("\nTienes: " + jugador1.getBatarangs() + " batarangs en total\n");
                         mensajeTienda();
                         opcionTienda = teclado.nextInt();
-                        if (jugador1.getBatarangs() > 0) {
+                        if (jugador1.getBatarangs() > 0) {//Se presentera las opciones si tienes dinero
 
                             switch (opcionTienda) {
                                 case 1:
-                                    if (jugador1.getBatarangs() >= 9) {
+                                    if (jugador1.getBatarangs() >= 9) {//Solo se accede si el jugador posee el dinero suficiente
 
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 9);
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 9);//Se resta el dinero del objeto
                                         jugador1.getBatarangs();
-                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 6);
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 6);//Se añade el cambio de estadisticas
                                         jugador1.getPuntosAtaque();
 
-                                        if (jugador1.getBatarangs() < 0) {
+                                        if (jugador1.getBatarangs() < 0) {//Se comprueba y se fija que el dinero no se baje a 0
                                             jugador1.setBatarangs(0);
                                             jugador1.getBatarangs();
                                         }

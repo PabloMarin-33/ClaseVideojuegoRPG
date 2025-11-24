@@ -1,7 +1,7 @@
 package videojuego;
 
 /**
- *
+ *Clase del Jugador
  * @author usuario
  */
 public class Jugador {
@@ -9,7 +9,7 @@ public class Jugador {
     private int puntosSalud, puntosAtaque, batarangs;
 
     /**
-     *
+     *Declaración de los atributos
      * @param nombre
      */
     public Jugador(String nombre) {
@@ -20,7 +20,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función get que devuelve el String del nombre del jugador
      * @return
      */
     public String getNombre() {
@@ -28,7 +28,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función get que devuelve el int de los Puntos de Salud del jugador
      * @return
      */
     public int getPuntosSalud() {
@@ -36,7 +36,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función get que devuelve el int de los Puntos de Ataque del jugador
      * @return
      */
     public int getPuntosAtaque() {
@@ -44,7 +44,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función get que devuelve el int de los Puntos de Salud del jugador
      * @return
      */
     public int getBatarangs() {
@@ -52,7 +52,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función set que restablece el String nombre del jugador
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -60,7 +60,7 @@ public class Jugador {
     }
 
     /**
-     *
+     *Función set que restablece el valor del int de los Puntos de Salud del jugador
      * @param puntosSalud
      */
     public void setPuntosSalud(int puntosSalud) {

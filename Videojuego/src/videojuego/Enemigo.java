@@ -2,7 +2,7 @@ package videojuego;
 
 /**
  *Declaracion de atributos
- * @author Pablo Marín Ortega
+ * 
  */
 public class Enemigo {
     

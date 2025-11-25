@@ -241,11 +241,11 @@ public class Main {
                     * un Jefe del cual dependiendo(if-else) de tus PS podrá salir tres variaciones del Jefe
                     */
                     if (contador == 5) {
-                        audio.stop();
+                        audio.Stop();
                         System.out.println("──────────────────────────────────────────────────────────────\n"
                             +"Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
                                                 
-                        Jefefinal jefefinal1 = new Jefefinal(nombreEnemigo, contador, contador); 
+                        JefeFinal jefeFinal1 = new JefeFinal(nombreEnemigo, contador, contador); 
                         audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
                         Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!"+"\n");
                         /**
@@ -260,16 +260,16 @@ public class Main {
                             System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
                         
-                        jefefinal1.llamarJefe(jugador1);
+                        jefeFinal1.llamarJefe(jugador1);
     
-                        if (jugador1.getPuntosAtaque() >= jefefinal1.getPuntosAtaqueJefe()) {
+                        if (jugador1.getPuntosAtaque() >= jefeFinal1.getPuntosAtaqueJefe()) {
 
                         // Gana combate
                         botin = enemigo.soltarDinero();
                         jugador1.setBatarangs(jugador1.getBatarangs() + botin);
 
                         System.out.println("───────────────────────────────"+
-                                            "\n¡LE HAS GANADO A "+ jefefinal1.getNombreJefe()+ '!'+"\n");
+                                            "\n¡LE HAS GANADO A "+ jefeFinal1.getNombreJefe()+ '!'+"\n");
                         
                         Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
                         Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
@@ -311,7 +311,7 @@ public class Main {
                     *todo esto mientras(if-else) tengas la contidad suficiente de dinero.
                     */
                 case 2:
-                    audio.stop();
+                    audio.Stop();
                     audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
 
                     System.out.println("\n¡Ha gastar dinero!");

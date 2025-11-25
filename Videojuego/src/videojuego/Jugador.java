@@ -2,7 +2,7 @@ package videojuego;
 
 /**
  *Declaracion de atributos
- * @author usuario
+ *
  */
 public class Jugador {
     private String nombre;

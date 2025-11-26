@@ -76,7 +76,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         Musica audio = new Musica();
 
-        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+        audio.Play("src/videojuego/audio/Batman.wav");
         /**
          * Introducción del juego donde el jugador se adentrara, y se declara(Jugador1
          * ) en el juego hasta que le piden que inserte su nombre en String
@@ -254,7 +254,7 @@ public class Main {
                                 + "Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
 
                         JefeFinal jefeFinal1 = new JefeFinal(nombreEnemigo, contador, contador);
-                        audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
+                        audio.Play("src/videojuego/audio/Risa-Joker.wav");
                         Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!");
                         /**
                          * Aqui se espera 11 segundos para que suene el sonido de la
@@ -263,8 +263,7 @@ public class Main {
                          * sigue con el juego pero sin musica en esta parte
                          */
                         try {
-                            Thread.sleep(11552); // Se detendra estos segundos el programa hasta que pase el sonido
-                                                 // de arriba
+                            Thread.sleep(11552); // Se detendra estos segundos el programa hasta que pase el sonido de arriba
                         } catch (InterruptedException e) {
                             System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
@@ -282,8 +281,7 @@ public class Main {
 
                             Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
                             Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
-                            contador = 0;// cada que le ganes o pierdas contra el jefe el contador se restablece a 0
-                                         // combates
+                            contador = 0;// cada que le ganes o pierdas contra el jefe el contador se restablece a 0 combates
 
                         } else {
                             // Pierde combate
@@ -314,7 +312,7 @@ public class Main {
                         } catch (InterruptedException e) {
                             System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
-                        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+                        audio.Play("src/videojuego/audio/Batman.wav");
                     }
 
                     break;
@@ -325,7 +323,7 @@ public class Main {
                  */
                 case 2:
                     audio.Stop();
-                    audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
+                    audio.Tienda("src/videojuego/audio/Tienda.wav");
 
                     System.out.println("\n¡Ha gastar dinero!");
                     do {// Bucle para que el jugador pueda comprar más de un objeto
@@ -442,7 +440,7 @@ public class Main {
                             System.out.println("No tienes dinero");
                         }
                     } while (opcionTienda != 6);
-                    audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+                    audio.Play("src/videojuego/audio/Batman.wav");
 
                     break;
                 /**

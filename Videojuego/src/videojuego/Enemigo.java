@@ -10,7 +10,7 @@ public class Enemigo {
     private int puntosAtaque;
 
     /**
-     *Declaración del objeto
+     *Constructor con parámetros para el Enemigo
      * @param nombre
      * @param puntosAtaque
      */
@@ -69,7 +69,7 @@ public class Enemigo {
     }
 
     /**
-     *Funcion que asifna un nombre aleatorio del array en Main
+     *Funcion que elige un nombre aleatorio del array en Main
      * @param nombre
      */
     public Enemigo(String nombre) {

@@ -9,7 +9,7 @@ public class JefeFinal {
     private int puntosSaludJefe, puntosAtaqueJefe;
 
     /**
-     *Declaración del constructor con parámetros para el JefeFinal
+     *Constructor con parámetros para el JefeFinal
      * @param nombreJefe
      * @param puntosSaludJefe
      * @param puntosAtaqueJefe
@@ -87,13 +87,15 @@ public class JefeFinal {
      * @param jugador
      */
     public void llamarJefe(Jugador jugador) {
-        System.out.println("El jefe fue llamado por " + jugador.getNombre() + ", tienes " + jugador.getPuntosSalud() + " de vida." + "\n");
+        System.out.println("El jefe fue llamado por " + jugador.getNombre() +"\n" 
+        + "Tienes: " + jugador.getPuntosSalud() + " de vida." +"\n"+
+         "Con este ataque: " + jugador.getPuntosAtaque()+ "\n");
         
         /**
      *Serie de condicionales que sirve para introducir 3 tipos de jefes que, varían 
      * dependiendo de los Puntos de Salud del Jugador y que la vida del Jefe se adapte a la situación del jugador
      */
-        if (jugador.getPuntosSalud() >= 50) {
+        if (jugador.getPuntosSalud() >= 50 && jugador.getPuntosAtaque() >= 50) {
             System.out.println("Ya no juegas por que tu nivel esta muy alto");
             return;
 
@@ -102,7 +104,7 @@ public class JefeFinal {
         int minJefe = 0;
         int maxjefe = 0;
         
-        if (jugador.getPuntosSalud() >= 25) {
+        if (jugador.getPuntosSalud() >= 25 && jugador.getPuntosAtaque() >= 25) {
             minJefe = 25;
             maxjefe = 50;
 
@@ -111,7 +113,7 @@ public class JefeFinal {
             System.out.println("!A aparecido el jefe " + getNombreJefe());
             
             
-        } else if (jugador.getPuntosSalud() >= 15) {
+        } else if (jugador.getPuntosSalud() >= 15 && jugador.getPuntosAtaque() >= 15) {
             minJefe = 15;
             maxjefe = 25;
 
@@ -119,7 +121,7 @@ public class JefeFinal {
             System.out.println("!A aparecido el jefe " + getNombreJefe());
 
             
-        } else if (jugador.getPuntosSalud() >= 5) {
+        } else if (jugador.getPuntosSalud() >= 5 && jugador.getPuntosAtaque() >= 5) {
             minJefe = 5;
             maxjefe = 15;
 
@@ -132,8 +134,10 @@ public class JefeFinal {
         }
 
         this.puntosSaludJefe = (int)(Math.random() * (maxjefe - minJefe + 1)) + minJefe;// Calculo de la vida del Jefe
+        this.puntosAtaqueJefe = (int)(Math.random() * (maxjefe - minJefe + 1)) + minJefe;
 
-        System.out.println("Salud del jefe: " + this.puntosSaludJefe);
+        System.out.println("Salud del jefe: " + this.puntosSaludJefe +"\n"+
+        "Ataque del jefe: " + this.puntosAtaqueJefe);
         toString();
 
     }

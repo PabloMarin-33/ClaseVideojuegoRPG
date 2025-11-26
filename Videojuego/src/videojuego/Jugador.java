@@ -9,7 +9,7 @@ public class Jugador {
     private int puntosSalud, puntosAtaque, batarangs;
 
     /**
-     *Declaración del objeto
+     *Constructor con parámetros para el Jugador
      * @param nombre
      */
     public Jugador(String nombre) {
@@ -131,7 +131,7 @@ public class Jugador {
         }
 
         System.out.println("GAME OVER");
-        this.puntosSalud = 0; // asegurar que no quede negativo
+        this.puntosSalud = 0; // asegurar que no quede la salud del jugador en un número negativo negativo
     }
     
     /**

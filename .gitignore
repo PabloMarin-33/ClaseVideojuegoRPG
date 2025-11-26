@@ -3,8 +3,7 @@ nbproject/private/
 build/
 
 dist/*
-!dist/javadoc/
-!dist/javadoc/**
+
 
 # Archivos temporales de NetBeans
 nbproject/Makefile-*.mk

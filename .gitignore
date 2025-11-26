@@ -1,0 +1,18 @@
+# Carpetas generadas automáticamente por NetBeans
+nbproject/private/
+build/
+
+dist/*
+!dist/javadoc/
+!dist/javadoc/**
+
+# Archivos temporales de NetBeans
+nbproject/Makefile-*.mk
+nbproject/Package-*.bash
+
+# Archivos de compilación
+*.class
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

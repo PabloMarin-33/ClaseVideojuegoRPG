@@ -39,4 +39,4 @@ Nuestro videojuego es un RPG que abarca la historia de una persona comun que ayu
 
 ## Casos de uso
 
-![Tabla de los casos de uso del videojuego](../img/Casos-uso.png)
+![Tabla de los casos de uso del videojuego](img/Casos-uso.png)

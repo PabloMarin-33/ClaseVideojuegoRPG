@@ -2,8 +2,8 @@
 nbproject/private/
 build/
 
-dist/*
-
+# Bloqueos temporales de LibreOffice/Writer
+.~lock.Casos-uso.odt#
 
 # Archivos temporales de NetBeans
 nbproject/Makefile-*.mk

@@ -12,13 +12,13 @@ Nuestro videojuego es un RPG que abarca la historia de una persona comun que ayu
     **RF-1.5** Ver estadisticas jugador
 
 **RF-2: Responsable Jugador**
-  **RF-2.1** Nombrar jugador
-  **RF-2.2** Elegir fuerza
-  **RF-2.3** Combatir contra enemigo, ganar, perder, morir
-  **RF-2.4** Combatir contra enemigo final
-  **RF-2.6** Tienda
-  **RF-2.7** Comprar tienda
-  **RF-2.8** ver estadistcas del jugador
+    **RF-2.1** Nombrar jugador
+    **RF-2.2** Elegir fuerza
+    **RF-2.3** Combatir contra enemigo, ganar, perder, morir
+    **RF-2.4** Combatir contra enemigo final
+    **RF-2.6** Tienda
+    **RF-2.7** Comprar tienda
+    **RF-2.8** ver estadistcas del jugador
   
 **RF-3: Responsable Tienda**
     **RF-3.1** Abrir Tienda

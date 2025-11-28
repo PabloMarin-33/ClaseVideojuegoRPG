@@ -5,11 +5,11 @@ Nuestro videojuego es un RPG que abarca la historia de una persona comun que ayu
 ## Requisitos funcionales
 
 **RF-1: Responsable interfaz grafica**
-    **RF-1.1** Nombrar jugador
-    **RF-1.2** Elegir fuerza
-    **RF-1.3** Elegir combatir
-    **RF-1.4** Tienda
-    **RF-1.5** Ver estadisticas jugador
+- **RF-1.1** Nombrar jugador
+- **RF-1.2** Elegir fuerza
+- **RF-1.3** Elegir combatir
+- **RF-1.4** Tienda
+- **RF-1.5** Ver estadisticas jugador
 
 **RF-2: Responsable Jugador**
     **RF-2.1** Nombrar jugador

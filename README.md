@@ -1,6 +1,6 @@
 # ClaseVideojuegoRPG
 
-Nuestro videojuego es un RPG que abarca la historia de una persona comun que ayuda a batmab por una noche a combatir enemigos.
+Nuestro videojuego es un RPG que abarca la historia de una persona comun que ayuda a batmam por una noche a combatir enemigos.
 
 ## Requisitos funcionales
 

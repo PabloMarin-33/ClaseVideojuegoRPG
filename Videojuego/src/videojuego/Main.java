@@ -440,7 +440,7 @@ public class Main {
                             System.out.println("No tienes dinero");
                         }
                     } while (opcionTienda != 6);
-                    audio.Play("src/videojuego/audio/Batman.wav");
+                    audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
 
                     break;
                 /**

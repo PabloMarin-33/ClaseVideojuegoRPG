@@ -47,8 +47,8 @@ Nuestro videojuego es un RPG que abarca la historia de una persona comun que ayu
 
 ## Diagrama de gantt
 
-![Diagrama de Gantt](img/Diagrama-gantt.png)
+![Diagrama de Gantt](img/cronograma.png)
 
 ## Diagrama de clase
 
-![Diagrama de clase](img/Diagrama-clase.png)
+![Diagrama de clase](img/Diagrama_clase.png)

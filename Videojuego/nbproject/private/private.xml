@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Main.java</file>
-            <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Jugador.java</file>
             <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Enemigo.java</file>
-            <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Musica.java</file>
+            <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/EnumVillanos.java</file>
+            <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Graficos.java</file>
             <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/JefeFinal.java</file>
+            <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Jugador.java</file>
+            <file>file:/C:/Users/usuario/Documents/ClaseVideojuegoRPG/Videojuego/src/videojuego/Renderizacion.java</file>
         </group>
     </open-files>
 </project-private>

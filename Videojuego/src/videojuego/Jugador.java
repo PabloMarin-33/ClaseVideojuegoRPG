@@ -105,34 +105,6 @@ public class Jugador {
         int Random = (int)(Math.random()*11);
         this.puntosAtaque = Random;
     }
-
-    /**
-     *Funcion que muestra las múltiples pantallas de GAME OVER
-     * @param enemigo
-     */
-    public void morirPorEnemigo(Enemigo enemigo) {
-        System.out.println("Has caído en Gotham...");
-
-        switch(enemigo.getNombre()) {
-            case "Enigma":
-                System.out.println("Enigma: '¿De verdad pensaste que podrías con mis acertijos?'");
-                break;
-            case "El Pingüino":
-                System.out.println("El Pingüino: 'La ciudad me pertenece, y tú no eres nadie...'");
-                break;
-            case "Poison Ivy":
-                System.out.println("Poison Ivy: 'La naturaleza siempre gana sobre la debilidad humana.'");
-                break;
-            case "Bane":
-                System.out.println("Bane: 'Gotham se fortalece mientras caes…'");
-                break;
-            default:
-                System.out.println("Batman: 'No todos están hechos para estas calles...'");
-        }
-
-        System.out.println("GAME OVER");
-        this.puntosSalud = 0; // asegurar que no quede la salud del jugador en un número negativo negativo
-    }
     
     /**
      *Función para asegurar que todo este calculado a tiempo apropiado

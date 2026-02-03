@@ -3,73 +3,22 @@ package videojuego;
 import java.util.Scanner;
 
 /**
- * Proyecto: Videojuego RPG
- * Versión: 1.0
- * 
+ * Proyecto: Videojuego RPG Versión: 1.0.1
+ *
  * @author Tomás Cano Y Pablo Marín
  */
-public class Main {
-
-    /**
-     * Función void llamada mensaje que devuelve el panel de opciones principal del
-     * juego
-     */
-    public static void mensaje() {
-
-        System.out.println("\n      PANEL DE OPCIONES \n"
-                + "───────────────────────────────\n"
-                + "»1       Combatir \n"
-                + "»2       Tienda \n"
-                + "»3       Mis estadisticas \n"
-                + "»4       Salir del juego \n"
-                + "───────────────────────────────\n");
-        System.out.print("Elige una opción: ");
-
-    }
-
-    /**
-     * Función void que devuelve las opciones para reajustar la fuerza del jugador
-     */
-    public static void mensaje2() {
-
-        System.out.println("¿Te gustaría cambiar de fuerza? \n");
-        System.out.println("Recuerda que tienes solo dos batarangs(dinero) por usar");
-        System.out.println("Opcion 1 es reasignar tu fuerza actual por un batarang");
-        System.out.println("Opcion 2 significa que estás listo para adentrarte en Gotham");
-        System.out.print("Elige una opcion: ");
-    }
-
-    /**
-     * Función void que devuelve de los objetos de la tienda con los cambios de
-     * estadísticas y costes
-     */
-    public static void mensajeTienda() {
-
-        Jugador.mostrarMensaje("\n        EQUIPAMIENTO \n"
-                + "───────────────────────────────────────────────────────────\n"
-                + "» 1   Bat-Hacha " + " Precio:  9 Batarangs " + " Fuerza: 6" + "\n"
-                + "» 2   Bat-Taser " + " Precio:  6 Batarangs " + " Fuerza: 3" + "\n"
-                + "» 3   Spray Anti-Tiburones " + " Precio:  4 Batarangs " + " Fuerza: 2" + "\n"
-                + "\n                   CURACION \n"
-                + "───────────────────────────────────────────────────────────\n"
-                + "» 4   Vendas " + " Precio:  2 Batarangs " + " Curacion: +2" + "\n"
-                + "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n"
-                + "───────────────────────────────────────────────────────────\n"
-                + "» 6   para salir" + "\n");
-        System.out.print("Elige una opcion: ");
-    }
+public class Main implements Graficos {
 
     public static void main(String[] args) {
-
         /**
          * Declaración de variables
          */
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
-        String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
+        String[] listaE = {"Enigma", "El pinguino", "Posion Ivy", "Bane"};
         int opcionFuerza = 0, indice, botin, damage, opcionTienda;
         int contador = 0;
-
+        Renderizacion render = new Renderizacion();
         /**
          * Declarando el Scanner(teclado) y musica
          */
@@ -78,72 +27,39 @@ public class Main {
 
         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
         /**
-         * Introducción del juego donde el jugador se adentrara, y se declara(Jugador1
-         * ) en el juego hasta que le piden que inserte su nombre en String
+         * Introducción del juego donde el jugador se adentrara, y se
+         * declara(Jugador1 ) en el juego hasta que le piden que inserte su
+         * nombre en String
          */
-        System.out.println("\n Batalla en Gotham city \n");
-        System.out.println("En una noche de Gotham city... mientras caminas por la calle escuchas gruñidos y gritos \n"
-                + "de gente desesperada, vas a investigar por curiosidad, no es hasta que encuentras \n"
-                + "a Batman haciendo su trabajo, interrogando a lo que parecen gánsters de bajo nivel, \n"
-                + "El nota tu precencia, levanta apenas la mirada y dice: \n"
-                + "\n"
-                + "B: ...Tu... has sido testigo de algo que no deberías de haber visto. Saben tu cara... Pero no tu nombre... ¿Quién eres?...\n");
-
-        System.out.print("introduce tu nombre: ");
+ 
+        
+        
+        render.presentacion();     
+    
         nombreJugador = teclado.nextLine();
 
-        System.out.println(
-                "\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"
-                        + "Por que hoy me vas a acompañar... \n");
+        System.out.println("\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"
+                + "Por que hoy me vas a acompañar... \n");
 
-        System.out.println(
-                "Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n"
-                        + "\n");
+        System.out.println("Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n"
+                + "\n");
 
-        System.out.println("_____________________                              _____________________\r\n"
-                + //
-                "`-._:  .:'   `:::  .:\\           |\\__/|           /::  .:'   `:::  .:.-'\r\n"
-                + //
-                "    \\      :          \\          |:   |          /         :       /    \r\n"
-                + //
-                "     \\     ::    .     `-_______/ ::   \\_______-'   .      ::   . /      \r\n"
-                + //
-                "      |  :   :: ::'  :   :: ::'  :   :: ::'      :: ::'  :   :: :|       \r\n"
-                + //
-                "      |     ;::         ;::         ;::         ;::         ;::  |       \r\n"
-                + //
-                "      |  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:|       \r\n"
-                + //
-                "      /     :           :           :           :           :    \\       \r\n"
-                + //
-                "     /______::_____     ::    .     ::    .     ::   _____._::____\\      \r\n"
-                + //
-                "                   `----._:: ::'  :   :: ::'  _.----'                    \r\n"
-                + //
-                "                          `--.       ;::  .--'                           \r\n"
-                + //
-                "                              `-. .:'  .-'                               \r\n"
-                + //
-                "                                 \\    /                                  \r\n"
-                + //
-                "                                  \\  /                                   \r\n"
-                + //
-                "                                   \\/ ");
+        render.simbolo();
 
         Jugador jugador1 = new Jugador(nombreJugador);
         /**
-         * Bucle en el que se le presentará al jugador con la opción de restablcer
-         * el valor de su fuerza a cambio de dinero. Esto se ha realizado a través
-         * de un bucle(do-while) con un pequeño panel de opciones(switch) y una
-         * condiocional(if)
-         * para que el dinero no vaya a numeros negativos
+         * Bucle en el que se le presentará al jugador con la opción de
+         * restablcer el valor de su fuerza a cambio de dinero. Esto se ha
+         * realizado a través de un bucle(do-while) con un pequeño panel de
+         * opciones(switch) y una condiocional(if) para que el dinero no vaya a
+         * numeros negativos
          */
         jugador1.calcularFuerzaJ();
         System.out.println("Tu fuerza inicial es: " + jugador1.getPuntosAtaque() + "\n");
 
         do {
 
-            mensaje2();
+            render.elegirFuerza();
 
             opcionFuerza = teclado.nextInt();
 
@@ -172,22 +88,22 @@ public class Main {
             }
         } while (opcionFuerza != 2);
         /**
-         * Bucle en el que se le presentará al jugador el principal panel de opciones
-         * que el jugador debera escoger una delas opciones(switch)
-         * en bucle(do-while) hasta sus ps estén a 0 o eliga salir del juego.
+         * Bucle en el que se le presentará al jugador el principal panel de
+         * opciones que el jugador debera escoger una delas opciones(switch) en
+         * bucle(do-while) hasta sus ps estén a 0 o eliga salir del juego.
          */
         while (jugando) {
 
-            mensaje();
+            render.mensajeMenu();
 
             int opcion = teclado.nextInt();
 
             switch (opcion) {
                 /**
-                 * Primera elección en el cual se le presentará un enemigo con sus puntos de
-                 * ataque.
-                 * El caombate acába cuando el jugador supera los puntes de
-                 * ataque del enemigo o sus PS se reducen a 0
+                 * Primera elección en el cual se le presentará un enemigo con
+                 * sus puntos de ataque. El caombate acába cuando el jugador
+                 * supera los puntes de ataque del enemigo o sus PS se reducen a
+                 * 0
                  */
                 case 1:
                     System.out.println("¡A combatir!");
@@ -237,15 +153,15 @@ public class Main {
 
                         // ¿Murió?
                         if (jugador1.getPuntosSalud() <= 0) { // Si la vida del jugador cae a 0
-                            jugador1.morirPorEnemigo(enemigo); // se muestra un mensaje personalizado de cada enemigo
+                            enemigo.morirPorEnemigo(jugador1); // se muestra un mensaje personalizado de cada enemigo
                             jugando = false; // es juego se acaba
                         }
                     }
                     /**
-                     * Al combatir hasta cierta cantidad de enemigos se enseñara a
-                     * un nuevo tipo de enemigo con música e una pequeña introducción
-                     * un Jefe del cual dependiendo(if-else) de tus PS podrá salir tres variaciones
-                     * del Jefe
+                     * Al combatir hasta cierta cantidad de enemigos se enseñara
+                     * a un nuevo tipo de enemigo con música e una pequeña
+                     * introducción un Jefe del cual dependiendo(if-else) de tus
+                     * PS podrá salir tres variaciones del Jefe
                      */
 
                     if (contador == 3) {
@@ -257,10 +173,11 @@ public class Main {
                         audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
                         Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!");
                         /**
-                         * Aqui se espera 11 segundos para que suene el sonido de la
-                         * presentacion dela jefe Si la ruta del archivo es incorrecta
-                         * o no encotrada el progarama te muestra el mensaje pero
-                         * sigue con el juego pero sin musica en esta parte
+                         * Aqui se espera 11 segundos para que suene el sonido
+                         * de la presentacion dela jefe Si la ruta del archivo
+                         * es incorrecta o no encotrada el progarama te muestra
+                         * el mensaje pero sigue con el juego pero sin musica en
+                         * esta parte
                          */
                         try {
                             Thread.sleep(11400); // Se detendra estos segundos el programa hasta que pase el sonido de arriba
@@ -276,8 +193,8 @@ public class Main {
                             botin = enemigo.soltarDinero();
                             jugador1.setBatarangs(jugador1.getBatarangs() + botin);
 
-                            System.out.println("───────────────────────────────" +
-                                    "\n¡LE HAS GANADO A " + jefeFinal1.getNombreJefe() + '!' + "\n");
+                            System.out.println("───────────────────────────────"
+                                    + "\n¡LE HAS GANADO A " + jefeFinal1.getNombreJefe() + '!' + "\n");
 
                             Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
                             Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
@@ -303,7 +220,7 @@ public class Main {
 
                             // Murio
                             if (jugador1.getPuntosSalud() <= 0) {
-                                jugador1.morirPorEnemigo(enemigo);
+                                enemigo.morirPorEnemigo(jugador1);
                                 jugando = false;
                             }
                         }
@@ -319,7 +236,8 @@ public class Main {
                 /**
                  * Segunda opción de la cual es la tienda de la cual se mostrará
                  * un nuevo panel de control para los objetos que puede comprar
-                 * todo esto mientras(if-else) tengas la contidad suficiente de dinero.
+                 * todo esto mientras(if-else) tengas la contidad suficiente de
+                 * dinero.
                  */
                 case 2:
                     audio.Stop();
@@ -328,24 +246,24 @@ public class Main {
                     System.out.println("\n¡Ha gastar dinero!");
                     do {// Bucle para que el jugador pueda comprar más de un objeto
                         System.out.println("\nTienes: " + jugador1.getBatarangs() + " batarangs en total\n");
-                        mensajeTienda();
+                        render.mensajeTienda();
                         opcionTienda = teclado.nextInt();
                         if (jugador1.getBatarangs() > 0) {// Se presentera las opciones si tienes dinero
 
                             switch (opcionTienda) {
                                 case 1:
                                     if (jugador1.getBatarangs() >= 9) {// Solo se accede si el jugador posee el dinero
-                                                                       // suficiente
+                                        // suficiente
 
                                         jugador1.setBatarangs(jugador1.getBatarangs() - 9);// Se resta el dinero del
-                                                                                           // objeto
+                                        // objeto
                                         jugador1.getBatarangs();
                                         jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 6);// Se añade el cambio
-                                                                                                 // de estadisticas
+                                        // de estadisticas
                                         jugador1.getPuntosAtaque();
 
                                         if (jugador1.getBatarangs() < 0) {// Se comprueba y se fija que el dinero no se
-                                                                          // baje a 0
+                                            // baje a 0
                                             jugador1.setBatarangs(0);
                                             jugador1.getBatarangs();
                                         }
@@ -444,15 +362,16 @@ public class Main {
 
                     break;
                 /**
-                 * Tercera opcion de la cual se muestra las estadísticas del jugador, a través
-                 * de un método toString
+                 * Tercera opcion de la cual se muestra las estadísticas del
+                 * jugador, a través de un método toString
                  */
                 case 3:
                     System.out.println("Tus estadisticas");
                     System.out.println(jugador1);
                     break;
                 /**
-                 * Cuarta opción que es salir del juego combiendo el valor del Booleano
+                 * Cuarta opción que es salir del juego combiendo el valor del
+                 * Booleano
                  */
                 case 4:
                     System.out.println("¡Adios, vuelva pronto!");
@@ -466,4 +385,28 @@ public class Main {
 
     }
 
+    @Override
+    public void presentacion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void simbolo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mensajeMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void elegirFuerza() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mensajeTienda() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -139,6 +139,9 @@ public class JefeFinal {
         System.out.println("Salud del jefe: " + this.puntosSaludJefe +"\n"+
         "Ataque del jefe: " + this.puntosAtaqueJefe);
         toString();
+        
 
+        
+       
     }
 }

@@ -1,5 +1,10 @@
 package videojuego;
 
+import static videojuego.EnumVillanos.Bane;
+import static videojuego.EnumVillanos.ElPinguino;
+import static videojuego.EnumVillanos.Enigma;
+import static videojuego.EnumVillanos.PoisonIvy;
+
 /**
  *Declaracion de atributos
  * 
@@ -75,6 +80,36 @@ public class Enemigo {
     public Enemigo(String nombre) {
         this.nombre = nombre;
         calcularFuerzaE(); 
+    }
+    
+        
+    EnumVillanos villanos = EnumVillanos.Bane;
+    /**
+     *Funcion que muestra las múltiples pantallas de GAME OVER
+     * @param enemigo
+     */
+    public void morirPorEnemigo(Jugador jugador) {
+        System.out.println("Has caído en Gotham...");
+
+        switch(villanos) {
+            case Enigma:
+                System.out.println("Enigma: '¿De verdad pensaste que podrías con mis acertijos?'");
+                break;
+            case ElPinguino:
+                System.out.println("El Pingüino: 'La ciudad me pertenece, y tú no eres nadie...'");
+                break;
+            case PoisonIvy:
+                System.out.println("Poison Ivy: 'La naturaleza siempre gana sobre la debilidad humana.'");
+                break;
+            case Bane:
+                System.out.println("Bane: 'Gotham se fortalece mientras caes…'");
+                break;
+            default:
+                System.out.println("Batman: 'No todos están hechos para estas calles...'");
+        }
+
+        System.out.println("GAME OVER");
+        jugador.setPuntosSalud(0); // asegurar que no quede la salud del jugador en un número negativo negativo
     }
 
     /**

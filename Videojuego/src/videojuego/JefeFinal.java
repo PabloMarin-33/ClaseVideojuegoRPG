@@ -87,9 +87,11 @@ public class JefeFinal {
      * @param jugador
      */
     public void llamarJefe(Jugador jugador) {
-        System.out.println("El jefe fue llamado por " + jugador.getNombre() +"\n" 
-        + "Tienes: " + jugador.getPuntosSalud() + " de vida." +"\n"+
-         "Con este ataque: " + jugador.getPuntosAtaque()+ "\n");
+        Jugador.mostrarMensaje("\n¡El Joker ha aparecido!\n");
+        
+        System.out.println("\nEl jefe fue llamado por " + jugador.getNombre());
+        System.out.println("Tienes: " + jugador.getPuntosSalud() + " de vida.");
+        System.out.println("Con este ataque: " + jugador.getPuntosAtaque() + "\n");
         
         /**
      *Serie de condicionales que sirve para introducir 3 tipos de jefes que, varían 
@@ -110,7 +112,7 @@ public class JefeFinal {
 
             
             setNombreJefe("Heath Ledger");
-            System.out.println("!A aparecido el jefe " + getNombreJefe());
+            System.out.println("!A aparecido el jefe " + getNombreJefe()+ " - El Joker Definitivo!");
             
             
         } else if (jugador.getPuntosSalud() >= 15 && jugador.getPuntosAtaque() >= 15) {
@@ -118,30 +120,25 @@ public class JefeFinal {
             maxjefe = 25;
 
             setNombreJefe("Mark Hamill");
-            System.out.println("!A aparecido el jefe " + getNombreJefe());
+            System.out.println("!A aparecido el jefe " + getNombreJefe()+ " - El Joker Clásico!");
 
             
         } else if (jugador.getPuntosSalud() >= 5 && jugador.getPuntosAtaque() >= 5) {
             minJefe = 5;
             maxjefe = 15;
 
-            setNombreJefe("Jared Leto");
-            System.out.println("!A aparecido el jefe " + getNombreJefe());
+            setNombreJefe("Joaquin Phoenix");
+            System.out.println("!A aparecido el jefe " + getNombreJefe() + " - El Joker Moderno!");
 
         } else {
-            System.out.println("Tienes un nivel muy bajo");
+            System.out.println("Tienes un nivel muy bajo para enfrentarte a un jefe");
             return;
         }
 
         this.puntosSaludJefe = (int)(Math.random() * (maxjefe - minJefe + 1)) + minJefe;// Calculo de la vida del Jefe
         this.puntosAtaqueJefe = (int)(Math.random() * (maxjefe - minJefe + 1)) + minJefe;
 
-        System.out.println("Salud del jefe: " + this.puntosSaludJefe +"\n"+
-        "Ataque del jefe: " + this.puntosAtaqueJefe);
-        toString();
-        
-
-        
-       
+        System.out.println(this.toString());
+    
     }
 }

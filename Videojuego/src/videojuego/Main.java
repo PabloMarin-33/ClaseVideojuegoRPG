@@ -15,7 +15,7 @@ public class Main implements Graficos {
          */
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
-        String[] listaE = {"Enigma", "El pinguino", "Posion Ivy", "Bane"};
+        String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
         int opcionFuerza = 0, indice, botin, damage, opcionTienda;
         int contador = 0;
         Renderizacion render = new Renderizacion();
@@ -31,18 +31,16 @@ public class Main implements Graficos {
          * declara(Jugador1 ) en el juego hasta que le piden que inserte su
          * nombre en String
          */
- 
-        
-        
-        render.presentacion();     
-    
+
+        render.presentacion();
+
         nombreJugador = teclado.nextLine();
 
         System.out.println("\nB: " + nombreJugador + " Tu noche acaba de empeorar y espero que te puedas manejar por las calles.\n"
-                + "Por que hoy me vas a acompañar... \n");
+                        + "Por que hoy me vas a acompañar... \n");
 
         System.out.println("Es así como tu historia empieza para resolver el misterio que rodea esta noche en Gotham. \n"
-                + "\n");
+                        + "\n");
 
         render.simbolo();
 
@@ -180,7 +178,8 @@ public class Main implements Graficos {
                          * esta parte
                          */
                         try {
-                            Thread.sleep(11400); // Se detendra estos segundos el programa hasta que pase el sonido de arriba
+                            Thread.sleep(11400); // Se detendra estos segundos el programa hasta que pase el sonido de
+                                                 // arriba
                         } catch (InterruptedException e) {
                             System.out.println("Error en la espera del jefe: " + e.getMessage());
                         }
@@ -198,7 +197,8 @@ public class Main implements Graficos {
 
                             Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
                             Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
-                            contador = 0;// cada que le ganes o pierdas contra el jefe el contador se restablece a 0 combates
+                            contador = 0;// cada que le ganes o pierdas contra el jefe el contador se restablece a 0
+                                         // combates
 
                         } else {
                             // Pierde combate
@@ -386,28 +386,34 @@ public class Main implements Graficos {
         teclado.close();
         audio.Stop();
     }
+
     @Override
     public void presentacion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void simbolo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mensajeMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void elegirFuerza() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mensajeTienda() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

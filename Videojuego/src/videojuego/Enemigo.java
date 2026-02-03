@@ -1,9 +1,5 @@
 package videojuego;
 
-import static videojuego.EnumVillanos.Bane;
-import static videojuego.EnumVillanos.ElPinguino;
-import static videojuego.EnumVillanos.Enigma;
-import static videojuego.EnumVillanos.PoisonIvy;
 
 /**
  *Declaracion de atributos

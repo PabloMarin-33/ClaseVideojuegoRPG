@@ -383,8 +383,9 @@ public class Main implements Graficos {
             }
         }
 
+        teclado.close();
+        audio.Stop();
     }
-
     @Override
     public void presentacion() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

@@ -5,5 +5,5 @@ package videojuego;
  *
  */
 public enum EnumVillanos {
-    Enigma, ElPinguino, PoisonIvy, Bane
+    Enigma, ElPinguino, PoisonIvy, Bane, Batman
 }

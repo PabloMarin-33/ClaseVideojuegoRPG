@@ -15,7 +15,7 @@ public class Main implements Graficos {
          */
         String nombreJugador, nombreEnemigo;
         boolean jugando = true;
-        String[] listaE = { "Enigma", "El pinguino", "Posion Ivy", "Bane" };
+        String[] listaE = { "Enigma", "El pinguino", "Poison Ivy", "Bane" };
         int opcionFuerza = 0, indice, botin, damage, opcionTienda;
         int contador = 0;
         Renderizacion render = new Renderizacion();
@@ -140,8 +140,6 @@ public class Main implements Graficos {
 
                         if (jugador1.getPuntosSalud() < 0) {// condicion que para que los PS no se reduzcan de 0
                             jugador1.setPuntosSalud(0);
-                            jugador1.getPuntosSalud();
-
                         }
 
                         Jugador.mostrarMensaje(" ¡PERDISTE LA PELEA!");
@@ -162,7 +160,7 @@ public class Main implements Graficos {
                      * PS podrá salir tres variaciones del Jefe
                      */
 
-                    if (contador == 3) {
+                    if (contador == 5) {
                         audio.Stop();
                         System.out.println("──────────────────────────────────────────────────────────────\n"
                                 + "Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
@@ -170,19 +168,7 @@ public class Main implements Graficos {
                         JefeFinal jefeFinal1 = new JefeFinal(nombreEnemigo, contador, contador);
                         audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
                         Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!");
-                        /**
-                         * Aqui se espera 11 segundos para que suene el sonido
-                         * de la presentacion dela jefe Si la ruta del archivo
-                         * es incorrecta o no encotrada el progarama te muestra
-                         * el mensaje pero sigue con el juego pero sin musica en
-                         * esta parte
-                         */
-                        try {
-                            Thread.sleep(11400); // Se detendra estos segundos el programa hasta que pase el sonido de
-                                                 // arriba
-                        } catch (InterruptedException e) {
-                            System.out.println("Error en la espera del jefe: " + e.getMessage());
-                        }
+                        JefeFinal.risaPrecentacion();
 
                         jefeFinal1.llamarJefe(jugador1);
 
@@ -192,8 +178,8 @@ public class Main implements Graficos {
                             botin = enemigo.soltarDinero();
                             jugador1.setBatarangs(jugador1.getBatarangs() + botin);
 
-                            System.out.println("───────────────────────────────"
-                                    + "\n¡LE HAS GANADO A " + jefeFinal1.getNombreJefe() + '!' + "\n");
+                            System.out.println("\\n¡LE HAS GANADO A \" + jefeFinal1.getNombreJefe() + '!' + \n");
+
 
                             Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
                             Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
@@ -207,13 +193,11 @@ public class Main implements Graficos {
 
                             if (jugador1.getPuntosSalud() < 0) {
                                 jugador1.setPuntosSalud(0);
-                                jugador1.getPuntosSalud();
 
                             }
 
                             Jugador.mostrarMensaje(" ¡PERDISTE LA PELEA!");
-                            Jugador.mostrarMensaje(
-                                    jefeFinal1.getNombreJefe() + " te superó por " + damage + " puntos.");
+                            Jugador.mostrarMensaje(jefeFinal1.getNombreJefe() + " te superó por " + damage + " puntos.");
                             Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
                             Jugador.mostrarMensaje("Salud restante: " + jugador1.getPuntosSalud() + "\n");
                             contador = 0;
@@ -224,11 +208,8 @@ public class Main implements Graficos {
                                 jugando = false;
                             }
                         }
-                        try {
-                            Thread.sleep(1500);
-                        } catch (InterruptedException e) {
-                            System.out.println("Error en la espera del jefe: " + e.getMessage());
-                        }
+                        JefeFinal.finalCombateJefe();
+
                         audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
                     }
 
@@ -242,12 +223,13 @@ public class Main implements Graficos {
                 case 2:
                     audio.Stop();
                     audio.Tienda("Videojuego/src/videojuego/audio/Tienda.wav");
-
                     System.out.println("\n¡Ha gastar dinero!");
+
                     do {// Bucle para que el jugador pueda comprar más de un objeto
                         System.out.println("\nTienes: " + jugador1.getBatarangs() + " batarangs en total\n");
                         render.mensajeTienda();
                         opcionTienda = teclado.nextInt();
+
                         if (jugador1.getBatarangs() > 0) {// Se presentera las opciones si tienes dinero
 
                             switch (opcionTienda) {
@@ -257,16 +239,8 @@ public class Main implements Graficos {
 
                                         jugador1.setBatarangs(jugador1.getBatarangs() - 9);// Se resta el dinero del
                                         // objeto
-                                        jugador1.getBatarangs();
                                         jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 6);// Se añade el cambio
                                         // de estadisticas
-                                        jugador1.getPuntosAtaque();
-
-                                        if (jugador1.getBatarangs() < 0) {// Se comprueba y se fija que el dinero no se
-                                            // baje a 0
-                                            jugador1.setBatarangs(0);
-                                            jugador1.getBatarangs();
-                                        }
 
                                         System.out.println("Ha cambio de 9 batarangs has ganado 6 de fuerza");
                                     } else {
@@ -278,15 +252,8 @@ public class Main implements Graficos {
                                 case 2:
                                     if (jugador1.getBatarangs() >= 6) {
 
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 6);
-                                        jugador1.getBatarangs();
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 6);     
                                         jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 3);
-                                        jugador1.getPuntosAtaque();
-
-                                        if (jugador1.getBatarangs() < 0) {
-                                            jugador1.setBatarangs(0);
-                                            jugador1.getBatarangs();
-                                        }
 
                                         System.out.println("Ha cambio de 6 batarangs has ganado 3 de fuerza");
                                     } else {
@@ -299,15 +266,8 @@ public class Main implements Graficos {
                                     if (jugador1.getBatarangs() >= 4) {
 
                                         jugador1.setBatarangs(jugador1.getBatarangs() - 4);
-                                        jugador1.getBatarangs();
                                         jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 2);
-                                        jugador1.getPuntosAtaque();
-
-                                        if (jugador1.getBatarangs() < 0) {
-                                            jugador1.setBatarangs(0);
-                                            jugador1.getBatarangs();
-                                        }
-
+                                        
                                         System.out.println("Ha cambio de 4 batarangs has ganado 2 de fuerza");
                                     } else {
                                         System.out.println("No tienes suficiente batarangs");
@@ -318,15 +278,8 @@ public class Main implements Graficos {
                                 case 4:
                                     if (jugador1.getBatarangs() >= 2) {
                                         jugador1.setBatarangs(jugador1.getBatarangs() - 2);
-                                        jugador1.getBatarangs();
                                         jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 2);
-                                        jugador1.getPuntosSalud();
-
-                                        if (jugador1.getBatarangs() < 0) {
-                                            jugador1.setBatarangs(0);
-                                            jugador1.getBatarangs();
-                                        }
-
+                                      
                                         System.out.println("Te has curado 2 PS");
                                     } else {
                                         System.out.println("No tienes suficiente batarangs");
@@ -337,14 +290,7 @@ public class Main implements Graficos {
                                 case 5:
                                     if (jugador1.getBatarangs() >= 3) {
                                         jugador1.setBatarangs(jugador1.getBatarangs() - 3);
-                                        jugador1.getBatarangs();
                                         jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 5);
-                                        jugador1.getPuntosSalud();
-
-                                        if (jugador1.getBatarangs() < 0) {
-                                            jugador1.setBatarangs(0);
-                                            jugador1.getBatarangs();
-                                        }
 
                                         System.out.println("has curado 5 PS");
                                     } else {
@@ -379,7 +325,6 @@ public class Main implements Graficos {
                     break;
                 default:
                     System.out.println("uff.. por ahi no, siga las intrucciones");
-
             }
         }
 
@@ -389,31 +334,27 @@ public class Main implements Graficos {
 
     @Override
     public void presentacion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+        throw new UnsupportedOperationException("Not supported yet.");// Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void simbolo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mensajeMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void elegirFuerza() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mensajeTienda() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -9,6 +9,7 @@ public class Enemigo {
     
     private String nombre;
     private int puntosAtaque;
+    private EnumVillanos tipVillanos;
 
     /**
      *Constructor con parámetros para el Enemigo
@@ -17,7 +18,8 @@ public class Enemigo {
      */
     public Enemigo(String nombre, int puntosAtaque) {
         this.nombre = nombre;
-        this.puntosAtaque = 0;
+        this.puntosAtaque = puntosAtaque;
+        asignarTipoVillano();
     }
 
     /**
@@ -75,11 +77,27 @@ public class Enemigo {
      */
     public Enemigo(String nombre) {
         this.nombre = nombre;
-        calcularFuerzaE(); 
+        calcularFuerzaE();
+        asignarTipoVillano(); 
     }
     
-        
-    EnumVillanos villanos = EnumVillanos.Bane;
+    /**
+     * Funcion que asigna el tipoVillano según el nombre    
+     */
+    private void asignarTipoVillano() {
+        if (this.nombre.equalsIgnoreCase("Enigma")) {
+            this.tipVillanos = EnumVillanos.Enigma;
+        } else if (this.nombre.equalsIgnoreCase("El pinguino")) {
+            this.tipVillanos = EnumVillanos.ElPinguino;
+        } else if (this.nombre.equalsIgnoreCase("Posion Ivy")) {
+            this.tipVillanos = EnumVillanos.PoisonIvy;
+        } else if (this.nombre.equalsIgnoreCase("Bane")) {
+            this.tipVillanos = EnumVillanos.Bane;
+        } else {
+            this.tipVillanos = EnumVillanos.Batman; // Por defecto
+        }
+    }    
+
     /**
      *Funcion que muestra las múltiples pantallas de GAME OVER
      * @param enemigo
@@ -87,7 +105,7 @@ public class Enemigo {
     public void morirPorEnemigo(Jugador jugador) {
         System.out.println("Has caído en Gotham...");
 
-        switch(villanos) {
+        switch(this.tipVillanos) {
             case Enigma:
                 System.out.println("Enigma: '¿De verdad pensaste que podrías con mis acertijos?'");
                 break;

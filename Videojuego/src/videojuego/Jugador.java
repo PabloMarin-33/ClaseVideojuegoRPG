@@ -114,7 +114,9 @@ public class Jugador {
     try {
         System.out.println(mensaje);
         Thread.sleep(600); // podés ajustar el tiempo
-        }  catch (InterruptedException e) {}
+        }  catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
 

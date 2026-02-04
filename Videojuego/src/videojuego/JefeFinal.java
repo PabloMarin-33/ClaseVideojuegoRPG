@@ -87,7 +87,8 @@ public class JefeFinal {
      * @param jugador
      */
     public void llamarJefe(Jugador jugador) {
-        Jugador.mostrarMensaje("\n¡El Joker ha aparecido!\n");
+        int nivelJugador = jugador.getPuntosSalud() + jugador.getPuntosAtaque();
+        int minJefe = 0, maxjefe = 0;
         
         System.out.println("\nEl jefe fue llamado por " + jugador.getNombre());
         System.out.println("Tienes: " + jugador.getPuntosSalud() + " de vida.");
@@ -97,16 +98,11 @@ public class JefeFinal {
      *Serie de condicionales que sirve para introducir 3 tipos de jefes que, varían 
      * dependiendo de los Puntos de Salud del Jugador y que la vida del Jefe se adapte a la situación del jugador
      */
-        if (jugador.getPuntosSalud() >= 50 && jugador.getPuntosAtaque() >= 50) {
+        if (nivelJugador >= 60) {
             System.out.println("Ya no juegas por que tu nivel esta muy alto");
             return;
 
-        }
-        
-        int minJefe = 0;
-        int maxjefe = 0;
-        
-        if (jugador.getPuntosSalud() >= 25 && jugador.getPuntosAtaque() >= 25) {
+        } else if (nivelJugador >= 40) {
             minJefe = 25;
             maxjefe = 50;
 
@@ -115,7 +111,7 @@ public class JefeFinal {
             System.out.println("!A aparecido el jefe " + getNombreJefe()+ " - El Joker Definitivo!");
             
             
-        } else if (jugador.getPuntosSalud() >= 15 && jugador.getPuntosAtaque() >= 15) {
+        } else if (nivelJugador >= 25) {
             minJefe = 15;
             maxjefe = 25;
 
@@ -123,7 +119,7 @@ public class JefeFinal {
             System.out.println("!A aparecido el jefe " + getNombreJefe()+ " - El Joker Clásico!");
 
             
-        } else if (jugador.getPuntosSalud() >= 5 && jugador.getPuntosAtaque() >= 5) {
+        } else if (nivelJugador >= 10) {
             minJefe = 5;
             maxjefe = 15;
 
@@ -141,4 +137,33 @@ public class JefeFinal {
         System.out.println(this.toString());
     
     }
+
+    /**
+    * Aqui se espera 11 segundos para que suene el sonido
+    * de la presentacion dela jefe Si la ruta del archivo
+    * es incorrecta o no encotrada el progarama te muestra
+    * el mensaje pero sigue con el juego pero sin musica en
+    * esta parte
+    */
+    public static void risaPrecentacion() {
+        try {
+            Thread.sleep(11400); // Se detendra estos segundos el programa hasta que pase el sonido de
+                                                 // arriba
+        } catch (InterruptedException e) {
+                System.out.println("Error en la espera del jefe: " + e.getMessage());
+                Thread.currentThread().interrupt();
+        }
+    }
+
+    public static void finalCombateJefe() {
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            System.out.println("Error en la espera del jefe: " + e.getMessage());
+            Thread.currentThread().interrupt();
+        }
+
+    }
+
 }
+

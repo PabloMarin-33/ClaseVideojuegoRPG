@@ -9,6 +9,10 @@ import java.util.Scanner;
  */
 public class Main implements Graficos {
 
+    // Variables estáticas para el sistema recursivo del jefe
+    private static JefeFinal jefeRecurrente = null;
+    private static int vecesEnfrentado = 0;
+
     public static void main(String[] args) {
         /**
          * Declaración de variables
@@ -118,7 +122,7 @@ public class Main implements Graficos {
                     Jugador.mostrarMensaje(" Tu fuerza es: " + jugador1.getPuntosAtaque());
                     System.out.println("─────────────────────────────");
 
-                    if (jugador1.getPuntosAtaque() >= enemigo.getPuntosAtaque()) {
+                    if (jugador1.getPuntosAtaque() > enemigo.getPuntosAtaque()) {
 
                         // Gana combate
                         botin = enemigo.soltarDinero();
@@ -132,7 +136,7 @@ public class Main implements Graficos {
 
                         Jugador.mostrarMensaje("Has derrotado " + contador + " enemigo/s.\n");
 
-                    } else {
+                    } else if (jugador1.getPuntosAtaque() < enemigo.getPuntosAtaque()) {
 
                         // Pierde combate
                         damage = enemigo.getPuntosAtaque() - jugador1.getPuntosAtaque();
@@ -152,6 +156,13 @@ public class Main implements Graficos {
                             enemigo.morirPorEnemigo(jugador1); // se muestra un mensaje personalizado de cada enemigo
                             jugando = false; // es juego se acaba
                         }
+
+                    } else {
+                        System.out.println("\n ¡EMPATE! ");
+                        Jugador.mostrarMensaje("Tu fuerza y la de " + enemigo.getNombre() + " son iguales.");
+                        Jugador.mostrarMensaje("Ambos retroceden sin causar daño.");
+                        Jugador.mostrarMensaje("¡No hay ganador esta vez!\n");
+                        // No se suma al contador, no hay botín, no hay daño
                     }
                     /**
                      * Al combatir hasta cierta cantidad de enemigos se enseñara
@@ -161,56 +172,9 @@ public class Main implements Graficos {
                      */
 
                     if (contador == 5) {
-                        audio.Stop();
-                        System.out.println("──────────────────────────────────────────────────────────────\n"
-                                + "Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
-
-                        JefeFinal jefeFinal1 = new JefeFinal(nombreEnemigo, contador, contador);
-                        audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
-                        Jugador.mostrarMensaje("¡Cuidado a aparecido el JOKER!");
-                        JefeFinal.risaPrecentacion();
-
-                        jefeFinal1.llamarJefe(jugador1);
-
-                        if (jugador1.getPuntosAtaque() >= jefeFinal1.getPuntosAtaqueJefe()) {
-
-                            // Gana combate
-                            botin = enemigo.soltarDinero();
-                            jugador1.setBatarangs(jugador1.getBatarangs() + botin);
-
-                            System.out.println("\\n¡LE HAS GANADO A \" + jefeFinal1.getNombreJefe() + '!' + \n");
-
-
-                            Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
-                            Jugador.mostrarMensaje("Ahora tienes: " + jugador1.getBatarangs() + " batarangs.\n");
-                            contador = 0;// cada que le ganes o pierdas contra el jefe el contador se restablece a 0
-                                         // combates
-
-                        } else {
-                            // Pierde combate
-                            damage = jefeFinal1.getPuntosAtaqueJefe() - jugador1.getPuntosAtaque();
-                            jugador1.setPuntosSalud(jugador1.getPuntosSalud() - damage);
-
-                            if (jugador1.getPuntosSalud() < 0) {
-                                jugador1.setPuntosSalud(0);
-
-                            }
-
-                            Jugador.mostrarMensaje(" ¡PERDISTE LA PELEA!");
-                            Jugador.mostrarMensaje(jefeFinal1.getNombreJefe() + " te superó por " + damage + " puntos.");
-                            Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
-                            Jugador.mostrarMensaje("Salud restante: " + jugador1.getPuntosSalud() + "\n");
-                            contador = 0;
-
-                            // Murio
-                            if (jugador1.getPuntosSalud() <= 0) {
-                                enemigo.morirPorEnemigo(jugador1);
-                                jugando = false;
-                            }
-                        }
-                        JefeFinal.finalCombateJefe();
-
-                        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+                        // Llamar al combate recursivo del jefe
+                        jugando = combateRecursivoJefe(jugador1, audio, enemigo);
+                        contador = 0; // Resetear contador después del combate con el jefe
                     }
 
                     break;
@@ -330,6 +294,107 @@ public class Main implements Graficos {
 
         teclado.close();
         audio.Stop();
+    }
+
+    /**
+     * Método recursivo para el combate con el jefe final
+     * El jefe sube de nivel cada vez que lo derrotas y vuelves a enfrentarlo
+     * 
+     * @param jugador El jugador actual
+     * @param audio Sistema de audio del juego
+     * @param enemigo Referencia al enemigo para mensajes de derrota
+     * @return true si el juego continúa, false si el jugador muere
+     */
+    private static boolean combateRecursivoJefe(Jugador jugador, Musica audio, Enemigo enemigo) {
+        audio.Stop();
+        System.out.println("──────────────────────────────────────────────────────────────\n"
+                + "Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
+
+        // Si es la primera vez, crear el jefe
+        if (jefeRecurrente == null) {
+            jefeRecurrente = new JefeFinal(null, 0, 0, 0);
+            vecesEnfrentado = 0;
+        } else {
+            // Si ya existe, subir su nivel
+            jefeRecurrente.subirNivel();
+        }
+
+        vecesEnfrentado++;
+        
+        if (vecesEnfrentado == 1) {
+            audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
+            Jugador.mostrarMensaje("¡Cuidado ha aparecido el JOKER!");
+            JefeFinal.risaPrecentacion();
+        } else {
+            System.out.println("\n ¡EL JOKER HA REGRESADO!\n");
+            System.out.println("   Enfrentamiento #" + vecesEnfrentado);
+        }
+
+        jefeRecurrente.llamarJefe(jugador);
+
+        // Variables para el combate
+        int damage;
+        int ataqueJefe = jefeRecurrente.getPuntosAtaqueJefe();
+        
+        // Verificar si el jefe usa ataque especial
+        if (jefeRecurrente.usarAtaqueEspecial()) {
+            ataqueJefe = jefeRecurrente.calcularAtaqueEspecial();
+        }
+
+        // Lógica de combate (sin turnos, como el original)
+        if (jugador.getPuntosAtaque() > ataqueJefe) {
+            // Gana combate
+            int botin = (int)(Math.random() * 20) + 10; // Botín mayor por ser jefe
+            jugador.setBatarangs(jugador.getBatarangs() + botin);
+
+            System.out.println("\n ¡VICTORIA SOBRE EL JOKER!\n");
+            
+            Jugador.mostrarMensaje("Has derrotado a " + jefeRecurrente.getNombreJefe());
+            Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
+            Jugador.mostrarMensaje("Ahora tienes: " + jugador.getBatarangs() + " batarangs.\n");
+            
+            if (vecesEnfrentado > 1) {
+                System.out.println("Has derrotado al Joker " + vecesEnfrentado + " veces consecutivas");
+                System.out.println("La próxima vez será aún más difícil...\n");
+            }
+
+        } else if (jugador.getPuntosAtaque() < ataqueJefe) {
+            // Pierde combate
+            damage = ataqueJefe - jugador.getPuntosAtaque();
+            jugador.setPuntosSalud(jugador.getPuntosSalud() - damage);
+
+            if (jugador.getPuntosSalud() < 0) {
+                jugador.setPuntosSalud(0);
+            }
+
+            Jugador.mostrarMensaje("\n ¡PERDISTE LA PELEA!");
+            Jugador.mostrarMensaje(jefeRecurrente.getNombreJefe() + " te superó por " + damage + " puntos.");
+            Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
+            Jugador.mostrarMensaje("Salud restante: " + jugador.getPuntosSalud() + "\n");
+
+            // Verificar si murió
+            if (jugador.getPuntosSalud() <= 0) {
+                System.out.println("\n       GAME OVER 💀 \n");
+                System.out.println("\nEl Joker: '¿Sabías que la locura es como la gravedad?");
+                System.out.println("         ¡Solo hace falta un pequeño empujón! JAJAJA!'\n");
+                System.out.println("Has caído ante el Joker después de " + vecesEnfrentado + " enfrentamiento(s).");
+                
+                jugador.setPuntosSalud(0);
+                JefeFinal.finalCombateJefe();
+                audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+                return false; // El juego termina
+            }
+        } else {      
+            System.out.println("\n ¡EMPATE! ");
+            Jugador.mostrarMensaje("Tu fuerza y la de " + enemigo.getNombre() + " son iguales.");
+            Jugador.mostrarMensaje("Ambos retroceden sin causar daño.");
+            Jugador.mostrarMensaje("¡No hay ganador esta vez!\n");
+            // No se suma al contador, no hay botín, no hay daño
+        }
+
+        JefeFinal.finalCombateJefe();
+        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+        return true; // El juego continúa
     }
 
     @Override

@@ -3,7 +3,7 @@ package videojuego;
 import java.util.Scanner;
 
 /**
- * Proyecto: Videojuego RPG Versión: 1.0.1
+ * Proyecto: Videojuego RPG Versión: 1.3.2
  *
  * @author Tomás Cano Y Pablo Marín
  */
@@ -114,8 +114,9 @@ public class Main implements Graficos {
                     nombreEnemigo = listaE[indice];
 
                     Enemigo enemigo = new Enemigo(nombreEnemigo);
-
-                    enemigo.calcularFuerzaE();
+                    
+                    // Usar sistema de escalado en lugar de fuerza aleatoria simple
+                    enemigo.calcularFuerzaEscalada(jugador1);
 
                     Jugador.mostrarMensaje(" Un enemigo aparece: " + enemigo.getNombre());
                     Jugador.mostrarMensaje(" Su fuerza es: " + enemigo.getPuntosAtaque());
@@ -198,15 +199,15 @@ public class Main implements Graficos {
 
                             switch (opcionTienda) {
                                 case 1:
-                                    if (jugador1.getBatarangs() >= 9) {// Solo se accede si el jugador posee el dinero
+                                    if (jugador1.getBatarangs() >= 12) {// Solo se accede si el jugador posee el dinero
                                         // suficiente
 
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 9);// Se resta el dinero del
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 12);// Se resta el dinero del
                                         // objeto
-                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 6);// Se añade el cambio
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 8);// Se añade el cambio
                                         // de estadisticas
 
-                                        System.out.println("Ha cambio de 9 batarangs has ganado 6 de fuerza");
+                                        System.out.println("Ha cambio de 12 batarangs has ganado 8 de fuerza");
                                     } else {
                                         System.out.println("No tienes suficiente batarangs, ");
                                     }
@@ -214,12 +215,12 @@ public class Main implements Graficos {
                                     break;
 
                                 case 2:
-                                    if (jugador1.getBatarangs() >= 6) {
+                                    if (jugador1.getBatarangs() >= 8) {
 
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 6);     
-                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 3);
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 8);     
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 5);
 
-                                        System.out.println("Ha cambio de 6 batarangs has ganado 3 de fuerza");
+                                        System.out.println("Ha cambio de 8 batarangs has ganado 5 de fuerza");
                                     } else {
                                         System.out.println("No tienes suficiente batarangs");
                                     }
@@ -227,12 +228,12 @@ public class Main implements Graficos {
                                     break;
 
                                 case 3:
-                                    if (jugador1.getBatarangs() >= 4) {
+                                    if (jugador1.getBatarangs() >= 6) {
 
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 4);
-                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 2);
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 6);
+                                        jugador1.setPuntosAtaque(jugador1.getPuntosAtaque() + 4);
                                         
-                                        System.out.println("Ha cambio de 4 batarangs has ganado 2 de fuerza");
+                                        System.out.println("Ha cambio de 6 batarangs has ganado 4 de fuerza");
                                     } else {
                                         System.out.println("No tienes suficiente batarangs");
                                     }
@@ -240,11 +241,11 @@ public class Main implements Graficos {
                                     break;
 
                                 case 4:
-                                    if (jugador1.getBatarangs() >= 2) {
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 2);
-                                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 2);
+                                    if (jugador1.getBatarangs() >= 4) {
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 4);
+                                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 4);
                                       
-                                        System.out.println("Te has curado 2 PS");
+                                        System.out.println("Te has curado 4 PS");
                                     } else {
                                         System.out.println("No tienes suficiente batarangs");
                                     }
@@ -252,9 +253,9 @@ public class Main implements Graficos {
                                     break;
 
                                 case 5:
-                                    if (jugador1.getBatarangs() >= 3) {
-                                        jugador1.setBatarangs(jugador1.getBatarangs() - 3);
-                                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 5);
+                                    if (jugador1.getBatarangs() >= 5) {
+                                        jugador1.setBatarangs(jugador1.getBatarangs() - 5);
+                                        jugador1.setPuntosSalud(jugador1.getPuntosSalud() + 7);
 
                                         System.out.println("has curado 5 PS");
                                     } else {

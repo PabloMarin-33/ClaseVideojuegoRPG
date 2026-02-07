@@ -62,13 +62,54 @@ public class Enemigo {
     public String toString() {
         return "Enemigo{" + "nombre= " + nombre + ", puntosAtaque= " + puntosAtaque + '}';
     }
-   
+    
+
+    int bonoMinimo = 0, bonoMaximo = 0;
     /**
-     *Función que asigna un número aleatorio a los Puntos de Ataque
+     * Función que calcula la fuerza del enemigo escalada según el nivel del jugador
+     * A mayor progreso del jugador, los enemigos se vuelven más fuertes
+     * @param jugador El jugador actual para calcular el escalado
      */
-    public void calcularFuerzaE(){
-        int random = (int)(Math.random()*11);
-        this.puntosAtaque = random;
+    public void calcularFuerzaEscalada(Jugador jugador) {
+        // Calcular nivel del jugador (salud + ataque)
+        int nivelJugador = jugador.getPuntosSalud() + jugador.getPuntosAtaque();
+        
+        // Determinar rango base y bono según nivel del jugador
+        int rangoBase = 10; // Rango aleatorio base (0-10)
+
+        if (nivelJugador >= 50) {
+            // Jugador muy fuerte → Enemigos nivel 4
+            bonoMinimo = 7;
+            bonoMaximo = 15;
+        } else if (nivelJugador >= 35) {
+            // Jugador fuerte → Enemigos nivel 3
+            bonoMinimo = 6;
+            bonoMaximo = 10;
+        } else if (nivelJugador >= 25) {
+            // Jugador medio → Enemigos nivel 2
+            bonoMinimo = 2;
+            bonoMaximo = 5;
+        } else {
+            // Jugador inicial → Enemigos nivel 1 (sin bono)
+            bonoMinimo = 0;
+            bonoMaximo = 0;
+        }
+        
+        // Calcular fuerza base aleatoria (0-10)
+        int fuerzaBase = (int)(Math.random() * (rangoBase + 1));
+        
+        
+        this.puntosAtaque = fuerzaBase + soltarDinero();
+    }
+
+    /**
+     *Funcion que elije un cantidad de dinero que el enemigo suelta cuando muere
+     * @return
+     */
+    public int soltarDinero(){
+        // Añadir bono aleatorio según nivel
+        int bono = (int)(Math.random() * (bonoMaximo - bonoMinimo + 1)) + bonoMinimo;
+        return bono;
     }
 
     /**
@@ -77,7 +118,6 @@ public class Enemigo {
      */
     public Enemigo(String nombre) {
         this.nombre = nombre;
-        calcularFuerzaE();
         asignarTipoVillano(); 
     }
     
@@ -125,16 +165,4 @@ public class Enemigo {
         System.out.println("GAME OVER");
         jugador.setPuntosSalud(0); // asegurar que no quede la salud del jugador en un número negativo negativo
     }
-
-    /**
-     *Funcion que elije un cantidad de dinero que el enemigo suelta cuando muere
-     * @return
-     */
-    public int soltarDinero(){
-        int dineroE = (int)(Math.random()*10);
-        return dineroE;
-    }
-    
-    
-    
 }

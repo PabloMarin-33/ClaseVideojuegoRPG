@@ -47,13 +47,13 @@ public class Renderizacion implements Graficos {
      public void mensajeTienda() {
         Jugador.mostrarMensaje("\n        EQUIPAMIENTO \n"
                 + "───────────────────────────────────────────────────────────\n"
-                + "» 1   Bat-Hacha " + " Precio:  9 Batarangs " + " Fuerza: 6" + "\n"
-                + "» 2   Bat-Taser " + " Precio:  6 Batarangs " + " Fuerza: 3" + "\n"
-                + "» 3   Spray Anti-Tiburones " + " Precio:  4 Batarangs " + " Fuerza: 2" + "\n"
+                + "» 1   Bat-Hacha " + " Precio:  12 Batarangs " + " Fuerza: 8" + "\n"
+                + "» 2   Bat-Taser " + " Precio:  8 Batarangs " + " Fuerza: 3" + "\n"
+                + "» 3   Spray Anti-Tiburones " + " Precio:  6 Batarangs " + " Fuerza: 2" + "\n"
                 + "\n                   CURACION \n"
                 + "───────────────────────────────────────────────────────────\n"
-                + "» 4   Vendas " + " Precio:  2 Batarangs " + " Curacion: +2" + "\n"
-                + "» 5   Botiquin " + " Precio:  3 Batarangs " + " Curacion: +5" + "\n"
+                + "» 4   Vendas " + " Precio:  4 Batarangs " + " Curacion: +2" + "\n"
+                + "» 5   Botiquin " + " Precio:  5 Batarangs " + " Curacion: +5" + "\n"
                 + "───────────────────────────────────────────────────────────\n"
                 + "» 6   para salir" + "\n");
         System.out.print("Elige una opcion: ");

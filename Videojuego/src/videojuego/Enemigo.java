@@ -89,7 +89,7 @@ public class Enemigo {
         // Calcular ataque del enemigo de forma equilibrada
         // El enemigo tendrá entre 70%-120% de la fuerza del jugador
         int rangoMin = (int)(fuerzaJugador * 0.7);
-        int rangoMax = (int)(fuerzaJugador * 1.2);
+        int rangoMax = (int)(fuerzaJugador * 1);
         
         // Asegurar mínimos y máximos razonables
         if (rangoMin < 1) rangoMin = 1;

@@ -168,7 +168,7 @@ public class Enemigo {
                 // Enemigos NIVEL 1 (0-7 fuerza jugador)
                 dineroMinimo = 2;
                 dineroMaximo = 6;
-                break;
+                break; 
         }
     }
 

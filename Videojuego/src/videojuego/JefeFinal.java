@@ -182,11 +182,11 @@ public class JefeFinal {
      *Serie de condicionales que sirve para introducir 3 tipos de jefes que, varían 
      * dependiendo de los Puntos de Salud del Jugador y que la vida del Jefe se adapte a la situación del jugador
      */
-        if (nivelJugador >= 60) {
+        if (nivelJugador == 60) {
             System.out.println("Ya no juegas por que tu nivel esta muy alto");
             return;
 
-        } else if (nivelJugador >= 40) {
+        } else if (nivelJugador <= 40 && nivelJugador >= 59) {
             minJefe = 25;
             maxjefe = 45;
 
@@ -194,14 +194,14 @@ public class JefeFinal {
             System.out.println("!A aparecido el jefe " + getNombreJefe()+ " - El Joker Definitivo!");
             
             
-        } else if (nivelJugador >= 25) {
+        } else if (nivelJugador <= 25 && nivelJugador >= 39) {
             minJefe = 15;
             maxjefe = 20;
 
             setNombreJefe("Mark Hamill");
             System.out.println("!A aparecido el jefe " + getNombreJefe()+ " - El Joker Clásico!");
 
-        } else if (nivelJugador >= 10) {
+        } else if (nivelJugador <= 10 && nivelJugador >=24) {
             minJefe = 5;
             maxjefe = 15;
 

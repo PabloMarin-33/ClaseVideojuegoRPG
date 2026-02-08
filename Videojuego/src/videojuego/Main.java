@@ -7,11 +7,113 @@ import java.util.Scanner;
  *
  * @author Tomás Cano Y Pablo Marín
  */
-public class Main implements Graficos {
+public class Main {
 
-    // Variables estáticas para el sistema recursivo del jefe
     private static JefeFinal jefeRecurrente = null;
     private static int vecesEnfrentado = 0;
+
+    /**
+     * Método para el combate con el jefe final
+     * El jefe sube de nivel cada vez que lo derrotas y vuelves a enfrentarlo
+     * 
+     * @param jugador El jugador actual
+     * @param audio Sistema de audio del juego
+     * @param enemigo Referencia al enemigo para mensajes de derrota
+     * @return true si el juego continúa, false si el jugador muere
+     */
+    public static boolean combateRecursivoJefe(Jugador jugador, Musica audio, Enemigo enemigo) {
+
+        audio.Stop();
+        System.out.println("──────────────────────────────────────────────────────────────\n"
+                + "Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
+
+        // Si es la primera vez, crear el jefe
+        if (jefeRecurrente == null) {
+            jefeRecurrente = new JefeFinal(null, 0, 0, 0);
+            vecesEnfrentado = 0;
+        } else {
+            // Si ya existe, subir su nivel
+            jefeRecurrente.subirNivel();
+        }
+
+        vecesEnfrentado++;
+
+        if (vecesEnfrentado == 1) {
+            audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
+            Jugador.mostrarMensaje("¡Cuidado ha aparecido el JOKER!");
+            JefeFinal.risaPrecentacion();
+        } else {
+            System.out.println("\n ¡EL JOKER HA REGRESADO!\n");
+            System.out.println("   Enfrentamiento #" + vecesEnfrentado);
+        }
+
+        jefeRecurrente.llamarJefe(jugador);
+
+        // Variables para el combate
+        int damage;
+        int ataqueJefe = jefeRecurrente.getPuntosAtaqueJefe();
+
+        // Verificar si el jefe usa ataque especial
+        if (jefeRecurrente.usarAtaqueEspecial()) {
+            ataqueJefe = jefeRecurrente.calcularAtaqueEspecial();
+        }
+
+        // Lógica de combate (sin turnos, como el original)
+        if (jugador.getPuntosAtaque() > ataqueJefe) {
+            // Gana combate
+            int botin = (int) (Math.random() * 30) + 20; // Botín mayor por ser jefe
+            jugador.setBatarangs(jugador.getBatarangs() + botin);
+
+            System.out.println("\n ¡VICTORIA SOBRE EL JOKER!\n");
+
+            Jugador.mostrarMensaje("Has derrotado a " + jefeRecurrente.getNombreJefe());
+            Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
+            Jugador.mostrarMensaje("Ahora tienes: " + jugador.getBatarangs() + " batarangs.\n");
+
+            if (vecesEnfrentado > 1) {
+                System.out.println("Has derrotado al Joker " + vecesEnfrentado + " veces consecutivas");
+                System.out.println("La próxima vez será aún más difícil...\n");
+            }
+
+        } else if (jugador.getPuntosAtaque() < ataqueJefe) {
+            // Pierde combate
+            damage = ataqueJefe - jugador.getPuntosAtaque();
+            jugador.setPuntosSalud(jugador.getPuntosSalud() - damage);
+
+            if (jugador.getPuntosSalud() < 0) {
+                jugador.setPuntosSalud(0);
+            }
+
+            Jugador.mostrarMensaje("\n ¡PERDISTE LA PELEA!");
+            Jugador.mostrarMensaje(jefeRecurrente.getNombreJefe() + " te superó por " + damage + " puntos.");
+            Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
+            Jugador.mostrarMensaje("Salud restante: " + jugador.getPuntosSalud() + "\n");
+
+            // Verificar si murió
+            if (jugador.getPuntosSalud() <= 0) {
+                System.out.println("\n       GAME OVER   \n");
+                System.out.println("\nEl Joker: '¿Sabías que la locura es como la gravedad?");
+                System.out.println("         ¡Solo hace falta un pequeño empujón! JAJAJA!'\n");
+                System.out.println("Has caído ante el Joker después de " + vecesEnfrentado + " enfrentamiento(s).");
+
+                jugador.setPuntosSalud(0);
+                JefeFinal.finalCombateJefe();
+                audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+                return false; // El juego termina
+            }
+        } else {
+            System.out.println("\n ¡EMPATE! ");
+            Jugador.mostrarMensaje("Tu fuerza y la de " + jefeRecurrente.getNombreJefe() + " son iguales.");
+            Jugador.mostrarMensaje("Ambos retroceden sin causar daño.");
+            Jugador.mostrarMensaje("¡No hay ganador esta vez!\n");
+            // No se suma al contador, no hay botín, no hay daño
+        }
+
+        JefeFinal.finalCombateJefe();
+        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
+        return true; // El juego continúa
+    }
+
 
     public static void main(String[] args) {
         /**
@@ -295,132 +397,5 @@ public class Main implements Graficos {
 
         teclado.close();
         audio.Stop();
-    }
-
-    /**
-     * Método recursivo para el combate con el jefe final
-     * El jefe sube de nivel cada vez que lo derrotas y vuelves a enfrentarlo
-     * 
-     * @param jugador El jugador actual
-     * @param audio Sistema de audio del juego
-     * @param enemigo Referencia al enemigo para mensajes de derrota
-     * @return true si el juego continúa, false si el jugador muere
-     */
-    private static boolean combateRecursivoJefe(Jugador jugador, Musica audio, Enemigo enemigo) {
-        audio.Stop();
-        System.out.println("──────────────────────────────────────────────────────────────\n"
-                + "Un enemigo terrorífico se acerca... estas dispuesto a seguir.\n");
-
-        // Si es la primera vez, crear el jefe
-        if (jefeRecurrente == null) {
-            jefeRecurrente = new JefeFinal(null, 0, 0, 0);
-            vecesEnfrentado = 0;
-        } else {
-            // Si ya existe, subir su nivel
-            jefeRecurrente.subirNivel();
-        }
-
-        vecesEnfrentado++;
-        
-        if (vecesEnfrentado == 1) {
-            audio.Play("Videojuego/src/videojuego/audio/Risa-Joker.wav");
-            Jugador.mostrarMensaje("¡Cuidado ha aparecido el JOKER!");
-            JefeFinal.risaPrecentacion();
-        } else {
-            System.out.println("\n ¡EL JOKER HA REGRESADO!\n");
-            System.out.println("   Enfrentamiento #" + vecesEnfrentado);
-        }
-
-        jefeRecurrente.llamarJefe(jugador);
-
-        // Variables para el combate
-        int damage;
-        int ataqueJefe = jefeRecurrente.getPuntosAtaqueJefe();
-        
-        // Verificar si el jefe usa ataque especial
-        if (jefeRecurrente.usarAtaqueEspecial()) {
-            ataqueJefe = jefeRecurrente.calcularAtaqueEspecial();
-        }
-
-        // Lógica de combate (sin turnos, como el original)
-        if (jugador.getPuntosAtaque() > ataqueJefe) {
-            // Gana combate
-            int botin = (int)(Math.random() * 20) + 10; // Botín mayor por ser jefe
-            jugador.setBatarangs(jugador.getBatarangs() + botin);
-
-            System.out.println("\n ¡VICTORIA SOBRE EL JOKER!\n");
-            
-            Jugador.mostrarMensaje("Has derrotado a " + jefeRecurrente.getNombreJefe());
-            Jugador.mostrarMensaje("Recolectas " + botin + " batarangs.");
-            Jugador.mostrarMensaje("Ahora tienes: " + jugador.getBatarangs() + " batarangs.\n");
-            
-            if (vecesEnfrentado > 1) {
-                System.out.println("Has derrotado al Joker " + vecesEnfrentado + " veces consecutivas");
-                System.out.println("La próxima vez será aún más difícil...\n");
-            }
-
-        } else if (jugador.getPuntosAtaque() < ataqueJefe) {
-            // Pierde combate
-            damage = ataqueJefe - jugador.getPuntosAtaque();
-            jugador.setPuntosSalud(jugador.getPuntosSalud() - damage);
-
-            if (jugador.getPuntosSalud() < 0) {
-                jugador.setPuntosSalud(0);
-            }
-
-            Jugador.mostrarMensaje("\n ¡PERDISTE LA PELEA!");
-            Jugador.mostrarMensaje(jefeRecurrente.getNombreJefe() + " te superó por " + damage + " puntos.");
-            Jugador.mostrarMensaje("Pierdes " + damage + " puntos de salud.");
-            Jugador.mostrarMensaje("Salud restante: " + jugador.getPuntosSalud() + "\n");
-
-            // Verificar si murió
-            if (jugador.getPuntosSalud() <= 0) {
-                System.out.println("\n       GAME OVER 💀 \n");
-                System.out.println("\nEl Joker: '¿Sabías que la locura es como la gravedad?");
-                System.out.println("         ¡Solo hace falta un pequeño empujón! JAJAJA!'\n");
-                System.out.println("Has caído ante el Joker después de " + vecesEnfrentado + " enfrentamiento(s).");
-                
-                jugador.setPuntosSalud(0);
-                JefeFinal.finalCombateJefe();
-                audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
-                return false; // El juego termina
-            }
-        } else {      
-            System.out.println("\n ¡EMPATE! ");
-            Jugador.mostrarMensaje("Tu fuerza y la de " + enemigo.getNombre() + " son iguales.");
-            Jugador.mostrarMensaje("Ambos retroceden sin causar daño.");
-            Jugador.mostrarMensaje("¡No hay ganador esta vez!\n");
-            // No se suma al contador, no hay botín, no hay daño
-        }
-
-        JefeFinal.finalCombateJefe();
-        audio.Play("Videojuego/src/videojuego/audio/Batman.wav");
-        return true; // El juego continúa
-    }
-
-    @Override
-    public void presentacion() {
-        throw new UnsupportedOperationException("Not supported yet.");// Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void simbolo() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void mensajeMenu() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void elegirFuerza() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void mensajeTienda() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

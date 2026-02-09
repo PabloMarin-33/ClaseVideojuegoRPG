@@ -43,7 +43,8 @@ public class Renderizacion implements Graficos {
         System.out.println("Opcion 2 significa que estás listo para adentrarte en Gotham");
         System.out.print("Elige una opcion: ");
     }
-    
+
+    @Override
      public void mensajeTienda() {
         Jugador.mostrarMensaje("\n        EQUIPAMIENTO \n"
                 + "───────────────────────────────────────────────────────────\n"
